@@ -1,0 +1,22 @@
+--- mapserver-5.0.2.orig/Makefile.in 2007-08-22 20:27:43.000000000 +0400
++++ mapserver-5.0.2/Makefile.in      2008-05-02 18:30:56.000000000 +0400
+@@ -335,16 +335,16 @@
+ shptreetst: $(LIBMAP_STATIC) shptreetst.o mapserver.h
+ 	$(LD) $(CFLAGS) shptreetst.o $(EXE_LDFLAGS) -o shptreetst
+ 
+-sortshp: sortshp.o
++sortshp: $(LIBMAP_STATIC) sortshp.o
+ 	$(LD) $(CFLAGS) sortshp.o $(EXE_LDFLAGS) -o sortshp
+ 
+-tile4ms: tile4ms.o
++tile4ms: $(LIBMAP_STATIC) tile4ms.o
+ 	$(LD) $(CFLAGS) tile4ms.o $(EXE_LDFLAGS) -o tile4ms
+ 
+ msencrypt: $(LIBMAP_STATIC) msencrypt.o mapserver.h
+ 	$(LD) $(CFLAGS) msencrypt.o $(EXE_LDFLAGS) -o msencrypt
+ 
+-testexpr: testexpr.o mapparser.o maplexer.o
++testexpr: $(LIBMAP_STATIC) testexpr.o mapparser.o maplexer.o
+ 	$(LD) $(CFLAGS) testexpr.o $(EXE_LDFLAGS) -o testexpr
+ 
+ testcopy: $(LIBMAP_STATIC) testcopy.o mapcopy.o mapserver.h

@@ -1,0 +1,1 @@
+BEREMOTE_OPTS="--log-file /var/VRTSralus/beremote.log"
