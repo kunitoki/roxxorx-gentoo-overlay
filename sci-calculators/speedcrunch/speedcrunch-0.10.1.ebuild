@@ -12,14 +12,15 @@ KEYWORDS="~x86 ~amd64"
 IUSE="nls"
 RESTRICT="nomirror"
 
-DEPEND="$(qt4_min_version 4.2)
+DEPEND=">=x11-libs/qt-core-4.5.0_rc1
+        >=x11-libs/qt-gui-4.5.0_rc1
         >=dev-util/cmake-2.4.6"
-    
+
 src_compile()
 {
     cmake -DCMAKE_INSTALL_PREFIX=/usr src || die "cmake failed"
     emake || die "emake failed"
-    
+
     if use nls ; then
         for i in "${S}/src/i18n/*.ts"; do
             lrelease ${i} || die "lrelease failed";
