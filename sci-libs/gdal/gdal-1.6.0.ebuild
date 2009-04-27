@@ -39,16 +39,14 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	    netcdf? ( sci-libs/netcdf )
 	    hdf? ( sci-libs/hdf )
 	)
-	|| (
-	    jpeg2k? ( media-libs/jasper )
-	    ecwj2k? ( !media-libs/lcms
-		    sci-libs/libecwj2 )
-	)
+    jpeg2k? ( media-libs/jasper )
 	mysql? ( virtual/mysql )
 	odbc?   ( dev-db/unixODBC )
 	occi?   ( dev-db/oracle-instantclient-basic )
 	geos?   ( >=sci-libs/geos-2.2.1 )
-	sqlite? ( >=dev-db/sqlite-3 )"
+	sqlite? ( >=dev-db/sqlite-3 )
+	ecwj2k? ( !media-libs/lcms
+		sci-libs/libecwj2 )"
 
 DEPEND="${RDEPEND}
 	perl? ( python? ( ruby? ( >=dev-lang/swig-1.3.28 ) ) )
@@ -117,6 +115,10 @@ src_compile() {
     if useq occi ; then
         use_conf="--with-oci-include=${ORACLE_HOME}/include \
                   --with-oci-lib=${ORACLE_HOME}/lib ${use_conf}"
+    fi
+
+    if useq ecwj2k ; then
+        use_conf="--with-ecw ${use_conf}"
     fi
 
 	if useq ogdi ; then
