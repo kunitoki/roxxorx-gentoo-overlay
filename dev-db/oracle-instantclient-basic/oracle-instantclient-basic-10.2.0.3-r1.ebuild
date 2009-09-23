@@ -1,20 +1,23 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/oracle-instantclient-basic/oracle-instantclient-basic-10.2.0.3.ebuild,v 1.10 2008/05/02 19:44:20 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/oracle-instantclient-basic/oracle-instantclient-basic-10.2.0.3-r1.ebuild,v 1.3 2008/06/18 22:34:51 wolf31o2 Exp $
 
 inherit eutils
 
 MY_P_x86="${PN/oracle-/}-linux32-${PV}-20061115"
 MY_PSDK_x86="${MY_P_x86/basic/sdk}"
+MY_PLIB_x86="occi_gcc343_102030"
 
 MY_P_amd64="${PN/oracle-/}-linux-x86-64-${PV}-20070103"
 MY_PSDK_amd64="${MY_P_amd64/basic/sdk}"
+MY_PLIB_amd64="occi_gcc343_x86_64_102030"
 
 S=${WORKDIR}
 DESCRIPTION="Oracle 10g client installation for Linux with SDK"
 HOMEPAGE="http://www.oracle.com/technology/tech/oci/instantclient/index.html"
-SRC_URI="amd64? ( ${MY_P_amd64}.zip ${MY_PSDK_amd64}.zip )
-		 x86? ( ${MY_P_x86}.zip ${MY_PSDK_x86}.zip )"
+DOWNLOADPAGE="http://www.oracle.com/technology/tech/oci/occi/occidownloads.html"
+SRC_URI="amd64? ( ${MY_P_amd64}.zip ${MY_PSDK_amd64}.zip ${MY_PLIB_amd64}.tar.gz )
+		 x86? ( ${MY_P_x86}.zip ${MY_PSDK_x86}.zip ${MY_PLIB_x86}.tar.gz )"
 
 LICENSE="OTN"
 SLOT="0"
@@ -30,6 +33,8 @@ my_arch() {
 	export MY_P=${!MY_P}
 	MY_PSDK=MY_PSDK_${ARCH}
 	export MY_PSDK=${!MY_PSDK}
+	MY_PLIB=MY_PLIB_${ARCH}
+	export MY_PLIB=${!MY_PLIB}
 }
 
 pkg_setup() {
@@ -44,6 +49,12 @@ pkg_nofetch() {
 	eerror "Basic client package with SDK, which are:"
 	eerror "  ${MY_P}.zip"
 	eerror "  ${MY_PSDK}.zip"
+	eerror ""
+	eerror "Then go to:"
+	eerror "  ${DOWNLOADPAGE}"
+	eerror "select your platform and download the"
+	eerror "  ${MY_PLIB}.tar.gz"
+	eerror ""
 	eerror "Then after downloading put them in:"
 	eerror "  ${DISTDIR}"
 }
@@ -51,6 +62,7 @@ pkg_nofetch() {
 src_unpack() {
 	unzip "${DISTDIR}"/${MY_P}.zip || die "unsuccesful unzip ${MY_P}.zip"
 	unzip "${DISTDIR}"/${MY_PSDK}.zip || die "unsuccesful unzip ${MY_PSDK}.zip"
+	tar -xvf "${DISTDIR}"/${MY_PLIB}.tar.gz || die "unsuccesful untar ${MY_PLIB}.tar.gz"
 }
 
 src_install() {
@@ -69,6 +81,11 @@ src_install() {
 	cd "${S}"/instantclient_10_2
 	insinto /usr/$(get_libdir)/oracle/${PV}/client/lib
 	doins *.jar *.so *.so.10.1
+
+	# overwrite library
+	cd "${S}"
+	insinto /usr/$(get_libdir)/oracle/${PV}/client/lib
+	doins *.so.10.1 *.a
 
 	# fixes symlinks
 	dosym /usr/$(get_libdir)/oracle/${PV}/client/lib/libocci.so.10.1 /usr/$(get_libdir)/oracle/${PV}/client/lib/libocci.so
