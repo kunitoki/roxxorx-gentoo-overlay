@@ -1,0 +1,146 @@
+diff -Naur NVIDIA-Linux-x86-190.32-orig/usr/src/nv/nv-linux.h NVIDIA-Linux-x86-190.32/usr/src/nv/nv-linux.h
+--- NVIDIA-Linux-x86-190.32-orig/usr/src/nv/nv-linux.h	2009-09-02 11:54:49.000000000 +0100
++++ NVIDIA-Linux-x86-190.32/usr/src/nv/nv-linux.h	2009-09-17 21:05:45.000000000 +0100
+@@ -742,20 +742,28 @@
+ #define nv_down(lock)                   down(&lock)
+ #define nv_up(lock)                     up(&lock)
+ 
++#if defined(CONFIG_PREEMPT_RT) && !defined(init_MUTEX)
++#  define nv_spin_lock_init(lock)              atomic_spin_lock_init(lock)
++#  define nv_spin_lock_irqsave(lock, irq)      atomic_spin_lock_irqsave(lock, irq)
++#  define nv_spin_unlock_irqrestore(lock, irq) atomic_spin_unlock_irqrestore(lock, irq)
++#else
++#  define nv_spin_lock_init(lock)              spin_lock_init(lock)
++#  define nv_spin_lock_irqsave(lock, irq)      spin_lock_irqsave(lock, irq)
++#  define nv_spin_unlock_irqrestore(lock, irq) spin_unlock_irqrestore(lock, irq)
++#endif
++
+ #if defined(CONFIG_PREEMPT_RT)
+-#define NV_INIT_MUTEX(mutex) init_MUTEX(mutex)
++#  if defined(init_MUTEX)
++#    define nv_spinlock_t raw_spinlock_t
++#  else
++#    define nv_spinlock_t atomic_spinlock_t
++#  endif
+ #else
+-#if !defined(__SEMAPHORE_INITIALIZER) && defined(__COMPAT_SEMAPHORE_INITIALIZER)
+-#define __SEMAPHORE_INITIALIZER __COMPAT_SEMAPHORE_INITIALIZER
+-#endif
+-#define NV_INIT_MUTEX(mutex)                       \
+-    {                                              \
+-        struct semaphore __mutex =                 \
+-            __SEMAPHORE_INITIALIZER(*(mutex), 1);  \
+-        *(mutex) = __mutex;                        \
+-    }
++#  define nv_spinlock_t   spinlock_t
+ #endif
+ 
++#define NV_INIT_MUTEX(mutex) sema_init(mutex, 1)
++
+ #if defined (KERNEL_2_4)
+ #  define NV_IS_SUSER()                 suser()
+ #  define NV_PCI_DEVICE_NAME(dev)       ((dev)->name)
+diff -Naur NVIDIA-Linux-x86-190.32-orig/usr/src/nv/os-interface.c NVIDIA-Linux-x86-190.32/usr/src/nv/os-interface.c
+--- NVIDIA-Linux-x86-190.32-orig/usr/src/nv/os-interface.c	2009-09-02 11:54:48.000000000 +0100
++++ NVIDIA-Linux-x86-190.32/usr/src/nv/os-interface.c	2009-09-17 21:05:45.000000000 +0100
+@@ -108,11 +108,7 @@
+ {
+     nv_stack_t        *sp;
+     struct completion  completion;
+-#if defined(CONFIG_PREEMPT_RT)
+-    raw_spinlock_t     lock;
+-#else
+-    spinlock_t         lock;
+-#endif
++    nv_spinlock_t      lock;
+     S032               count;
+ } os_sema_t;
+ 
+@@ -148,7 +144,7 @@
+     os_sema = (os_sema_t *)*ppSema;
+     os_sema->sp = sp;
+     init_completion(&os_sema->completion);
+-    spin_lock_init(&os_sema->lock);
++    nv_spin_lock_init(&os_sema->lock);
+     os_sema->count = 1;
+ 
+     if (nv_os_smp_barrier_init())
+@@ -199,18 +195,18 @@
+     os_sema_t *os_sema = (os_sema_t *)pSema;
+     unsigned long old_irq;
+ 
+-    spin_lock_irqsave(&os_sema->lock, old_irq);
++    nv_spin_lock_irqsave(&os_sema->lock, old_irq);
+     if (os_sema->count <= 0)
+     {
+         os_sema->count--;
+-        spin_unlock_irqrestore(&os_sema->lock, old_irq);
++        nv_spin_unlock_irqrestore(&os_sema->lock, old_irq);
+         wait_for_completion(&os_sema->completion);
+     }
+     else
+     {
+         os_sema->count--;
+         rm_disable_interrupts(os_sema->sp);
+-        spin_unlock_irqrestore(&os_sema->lock, old_irq);
++        nv_spin_unlock_irqrestore(&os_sema->lock, old_irq);
+     }
+ 
+     return RM_OK;
+@@ -233,17 +229,17 @@
+     os_sema_t *os_sema = (os_sema_t *)pSema;
+     unsigned long old_irq;
+ 
+-    spin_lock_irqsave(&os_sema->lock, old_irq);
++    nv_spin_lock_irqsave(&os_sema->lock, old_irq);
+     if (os_sema->count <= 0)
+     {
+-        spin_unlock_irqrestore(&os_sema->lock, old_irq);
++        nv_spin_unlock_irqrestore(&os_sema->lock, old_irq);
+         return RM_ERROR;
+     }
+     else
+     {
+         os_sema->count--;
+         rm_disable_interrupts(os_sema->sp);
+-        spin_unlock_irqrestore(&os_sema->lock, old_irq);
++        nv_spin_unlock_irqrestore(&os_sema->lock, old_irq);
+         return RM_OK;
+     }
+ 
+@@ -267,7 +263,7 @@
+     unsigned long old_irq;
+     BOOL doWakeup;
+ 
+-    spin_lock_irqsave(&os_sema->lock, old_irq);
++    nv_spin_lock_irqsave(&os_sema->lock, old_irq);
+     if (os_sema->count < 0)
+     {
+         doWakeup = TRUE;
+@@ -278,7 +274,7 @@
+         rm_enable_interrupts(os_sema->sp);
+     }
+     os_sema->count++;
+-    spin_unlock_irqrestore(&os_sema->lock, old_irq);
++    nv_spin_unlock_irqrestore(&os_sema->lock, old_irq);
+ 
+     if (doWakeup)
+         complete(&os_sema->completion);
+@@ -1383,7 +1379,7 @@
+     unsigned long oldIrql;
+ 
+     os_sema = (os_sema_t *) pSema;
+-    spin_lock_irqsave(&os_sema->lock, oldIrql);
++    nv_spin_lock_irqsave(&os_sema->lock, oldIrql);
+ 
+     return oldIrql;
+ }
+@@ -1394,7 +1390,7 @@
+     unsigned long old_irq = (unsigned long) oldIrql;
+ 
+     os_sema = (os_sema_t *) pSema;
+-    spin_unlock_irqrestore(&os_sema->lock, old_irq);
++    nv_spin_unlock_irqrestore(&os_sema->lock, old_irq);
+ }
+ 
+ RM_STATUS NV_API_CALL os_get_address_space_info(

@@ -6,7 +6,7 @@ inherit eutils
 
 DESCRIPTION="Livestation is the new and interactive way to enjoy live TV and radio over broadband"
 HOMEPAGE="http://www.livestation.com/"
-SRC_URI="http://llstatic.livestation.com/releases/${P/l/L}.run"
+SRC_URI="http://updates.livestation.com/releases/${P/l/L}.run"
 
 LICENSE="LivestationEULA"
 SLOT="0"
