@@ -39,3 +39,13 @@ src_install()
 {
 	emake DESTDIR="${D}" install || die "einstall failed"
 }
+
+pkg_postinst() {
+    elog
+    elog "If you need some applications to ease managing spatialite database, then"
+    elog "you can emerge spatialite-tools afterwards:"
+    elog
+    elog "emerge -av spatialite-tools"
+    elog
+}
+
