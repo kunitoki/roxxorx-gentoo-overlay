@@ -10,14 +10,14 @@ KEYWORDS="~x86 ~amd64"
 
 DESCRIPTION="SpatiaLite CLI tools"
 HOMEPAGE="http://www.gaia-gis.it/spatialite"
-SRC_URI="http://www.gaia-gis.it/spatialite/${P}.tar.gz"
+SRC_URI="http://www.gaia-gis.it/spatialite-${PV}/${P}.tar.gz"
 
 LICENSE="MPL-1.1"
 
 SLOT="0"
 IUSE="geos proj readline"
 
-RDEPEND="=dev-db/spatialite-${PV}
+RDEPEND="=sci-libs/spatialite-${PV}
         geos? ( >=sci-libs/geos-3.1 dev-db/spatialite[geos] )
         proj? ( sci-libs/proj dev-db/spatialite[proj] )
         readline? ( sys-libs/readline dev-db/spatialite[readline] )"

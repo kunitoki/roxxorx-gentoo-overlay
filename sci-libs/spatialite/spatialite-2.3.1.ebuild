@@ -13,7 +13,7 @@ S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="SpatiaLite extension enables SQLite to support spatial data in a way conformant to OpenGis specifications."
 HOMEPAGE="http://www.gaia-gis.it/spatialite"
-SRC_URI="http://www.gaia-gis.it/spatialite/${MY_P}.tar.gz"
+SRC_URI="http://www.gaia-gis.it/spatialite-${PV}/${MY_P}.tar.gz"
 
 LICENSE="MPL-1.1"
 
