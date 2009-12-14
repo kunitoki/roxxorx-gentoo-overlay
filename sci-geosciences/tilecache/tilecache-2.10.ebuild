@@ -13,9 +13,9 @@ SLOT="0"
 KEYWORDS="~amd64 x86"
 IUSE="apache doc"
 
-DEPEND=">=dev-lang/python-2.3.5
-		>=dev-python/imaging-1.1.5
-		apache? (www-apache/mod_python)"
+DEPEND=">=dev-lang/python-2.5.0
+        >=dev-python/imaging-1.1.5
+        apache? ( www-apache/mod_python )"
 RDEPEND="${DEPEND}"
 
 BASE=/usr/share/webapps/${PN}
