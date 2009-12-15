@@ -24,12 +24,18 @@ DEPEND="${RDEPEND}"
 
 src_configure()
 {
-	econf --enable-autoconf \
-		--with-spatialite-lib=/usr/lib \
-		|| die "econf failed"
+    cd "${S}"
+
+	# Fix wrong hard coded paths
+	sed -e "s:/usr/local/lib:/usr/lib:g" -i ./Makefile
 }
 
 src_install()
 {
-	emake DESTDIR="${D}" install || die "einstall failed"
+	emake DESTDIR="${D}" || die "einstall failed"
+
+#    chmod +x "${S}"/bin/${PN} || die "Unable to find ${PN} binary"
+#    cp "${S}"/bin/${PN} "${D}"
+
+	dobin "${S}"/bin/${PN}
 }

@@ -18,9 +18,9 @@ SLOT="0"
 IUSE="geos proj readline"
 
 RDEPEND="=sci-libs/spatialite-${PV}
-        geos? ( >=sci-libs/geos-3.1 dev-db/spatialite[geos] )
-        proj? ( sci-libs/proj dev-db/spatialite[proj] )
-        readline? ( sys-libs/readline dev-db/spatialite[readline] )"
+        geos? ( >=sci-libs/geos-3.1 sci-libs/spatialite[geos] )
+        proj? ( sci-libs/proj sci-libs/spatialite[proj] )
+        readline? ( sys-libs/readline sci-libs/spatialite[readline] )"
 DEPEND="${RDEPEND}"
 
 src_configure()
