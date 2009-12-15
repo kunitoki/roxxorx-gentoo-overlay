@@ -34,8 +34,5 @@ src_install()
 {
 	emake DESTDIR="${D}" || die "einstall failed"
 
-#    chmod +x "${S}"/bin/${PN} || die "Unable to find ${PN} binary"
-#    cp "${S}"/bin/${PN} "${D}"
-
 	dobin "${S}"/bin/${PN}
 }
