@@ -19,11 +19,11 @@ KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
 # need to get these arches updated on several libs first
 #KEYWORDS="~alpha ~hppa"
 
-IUSE="curl debug doc ecwj2k fits geos gif gml hdf hdf5 jpeg jpeg2k mysql \
+IUSE="bigtiff curl debug doc ecwj2k fits geos gif gml hdf hdf5 jpeg jpeg2k mysql \
 netcdf occi odbc png ogdi perl postgres python ruby sqlite threads"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
-	>=media-libs/tiff-3.9.1
+	!bigtiff? ( >=media-libs/tiff-3.9.1 )
 	sci-libs/libgeotiff
 	dev-libs/expat
 	curl? ( net-misc/curl )
@@ -106,11 +106,15 @@ src_configure() {
 	# It can't find this
 	if useq occi ; then
 		use_conf="--with-oci-include=${ORACLE_HOME}/include \
-					--with-oci-lib=${ORACLE_HOME}/lib ${use_conf}"
+                  --with-oci-lib=${ORACLE_HOME}/lib ${use_conf}"
 	fi
 
 	if useq ecwj2k ; then
 		use_conf="--with-ecw ${use_conf}"
+	fi
+
+	if useq bigtiff ; then
+		use_conf="--with-libtiff=internal ${use_conf}"
 	fi
 
 	if useq ogdi ; then
