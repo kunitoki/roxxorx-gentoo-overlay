@@ -1,0 +1,19 @@
+--- spatialite.c	2009-06-29 18:18:15.000000000 +0200
++++ spatialite_new.c	2009-12-16 16:57:53.000000000 +0100
+@@ -28750,6 +28750,7 @@
+ {
+ /* used when SQLite initializes SpatiaLite via statically linked lib */
+     sqlite3_auto_extension ((void (*)(void)) init_static_spatialite);
++#ifdef FORCE_VERBOSE_INIT
+     if (verbose)
+       {
+ 	  printf ("SpatiaLite version ..: %s", spatialite_version ());
+@@ -28770,6 +28771,7 @@
+     if (verbose)
+ 	printf ("GEOS version ........: %s\n", GEOSversion ());
+ #endif /* end GEOS version */
++#endif
+ }
+ 
+ SPATIALITE_DECLARE int
+
