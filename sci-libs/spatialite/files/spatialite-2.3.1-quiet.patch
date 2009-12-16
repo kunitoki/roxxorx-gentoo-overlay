@@ -4,7 +4,7 @@
  /* setting a timeout handler */
      sqlite3_busy_timeout (db, 5000);
  
-+#ifndef FORCE_QUIET
++#ifdef FORCE_VERBOSE
      printf ("SpatiaLite version ..: %s", spatialite_version ());
      printf ("\tSupported Extensions:\n");
      printf ("\t- 'VirtualShape'\t[direct Shapefile access]\n");
