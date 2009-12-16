@@ -21,7 +21,7 @@ IUSE="acpi custom-cflags gtk multilib kernel_linux"
 RESTRICT="strip"
 EMULTILIB_PKG="true"
 
-COMMON="<x11-base/xorg-server-1.6.99
+COMMON="<x11-base/xorg-server-1.7.2
 	multilib? ( app-emulation/emul-linux-x86-xlibs )
 	kernel_FreeBSD? ( !media-video/nvidia-freebsd )
 	!app-emulation/emul-linux-x86-nvidia
