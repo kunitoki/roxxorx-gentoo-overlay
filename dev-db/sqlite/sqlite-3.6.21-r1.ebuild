@@ -81,7 +81,7 @@ src_configure() {
 
 src_compile() {
 	use tcl || cp "${WORKDIR}/sqlite3.h-${PV}" sqlite3.h
-	emake TCLLIBDIR="/usr/$(get_libdir)/${P}" || die "emake failed"
+	emake LDFLAGS="$(raw-ldflags) -ldl" TCLLIBDIR="/usr/$(get_libdir)/${P}" || die "emake failed"
 }
 
 src_test() {
