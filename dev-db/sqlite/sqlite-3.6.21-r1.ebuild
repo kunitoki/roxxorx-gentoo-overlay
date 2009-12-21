@@ -70,6 +70,10 @@ src_configure() {
 	# http://bugs.gentoo.org/show_bug.cgi?id=207701
 	use fts3 && append-cppflags -DSQLITE_ENABLE_FTS3=1
 
+	# Make enable-load-extension work
+	append-cppflags -DSQLITE_ENABLE_LOAD_EXTENSION=1
+	append-ldflags "-ldl"
+
 	econf \
 		$(use_enable debug) \
 		$(use_enable readline) \
@@ -81,7 +85,7 @@ src_configure() {
 
 src_compile() {
 	use tcl || cp "${WORKDIR}/sqlite3.h-${PV}" sqlite3.h
-	emake LDFLAGS="$(raw-ldflags) -ldl" TCLLIBDIR="/usr/$(get_libdir)/${P}" || die "emake failed"
+	emake TCLLIBDIR="/usr/$(get_libdir)/${P}" || die "emake failed"
 }
 
 src_test() {
