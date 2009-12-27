@@ -32,7 +32,7 @@ src_configure()
     cd "${S}"
 
     # Fix wrong hard coded paths
-    sed -e "s:ctypes.CDLL(lib_name):ctypes.CDLL('../'+lib_name):g" -i ./rtree/core.py
+    sed -e "s:ctypes.CDLL(lib_name):ctypes.CDLL(os.path.abspath(os.path.dirname(__file__))+'/../'+lib_name):g" -i ./rtree/core.py
 }
 
 src_install()
