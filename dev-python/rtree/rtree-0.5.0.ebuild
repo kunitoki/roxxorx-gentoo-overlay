@@ -27,7 +27,16 @@ DOCS="CHANGES.txt CREDITS.txt DEPENDENCIES.txt FAQ.txt README.txt"
 
 S="${WORKDIR}/${MY_P}"
 
-src_install(){
+src_configure()
+{
+    cd "${S}"
+
+    # Fix wrong hard coded paths
+    sed -e "s:ctypes.CDLL(lib_name):ctypes.CDLL('../'+lib_name):g" -i ./rtree/core.py
+}
+
+src_install()
+{
     distutils_src_install
 
 #    dohtml docs/*.{html,gif}
@@ -35,7 +44,8 @@ src_install(){
 #    doins -r examples docs/mibs
 }
 
-pkg_postinst() {
+pkg_postinst()
+{
     distutils_pkg_postinst
 }
 
