@@ -11,7 +11,7 @@ S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="Raterlite a library supporting Raster Data Sources within a SpatiaLite DB."
 HOMEPAGE="http://www.gaia-gis.it/spatialite"
-SRC_URI="http://www.gaia-gis.it/spatialite/${MY_P}.tar.gz"
+SRC_URI="http://www.gaia-gis.it/spatialite-2.4.0/${MY_P}.tar.gz"
 
 LICENSE="MPL-1.1"
 
@@ -20,7 +20,7 @@ SLOT="0"
 IUSE=""
 
 RDEPEND=">=dev-db/sqlite-3
-        =sci-libs/spatialite-2.3.1
+        >=sci-libs/spatialite-2.3.1
         sys-libs/zlib
         media-libs/libpng
         media-libs/tiff
