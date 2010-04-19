@@ -1,0 +1,51 @@
+--- configure.in.orig   2008-09-30 22:29:20.000000000 +0200
++++ configure.in   2008-09-30 23:03:08.000000000 +0200
+@@ -98,7 +98,5 @@
+ src/libicalss/Makefile
+ src/libicalvcal/Makefile
+ src/python/Makefile
+-src/test/Makefile
+-test-data/Makefile
+ ])
+ 
+--- Makefile.am.orig   2001-02-22 06:00:41.000000000 +0100
++++ Makefile.am   2008-09-30 23:10:04.000000000 +0200
+@@ -5,5 +5,5 @@
+    TEST \
+    TODO
+ 
+-SUBDIRS = design-data doc scripts test-data src examples
++SUBDIRS = design-data doc scripts src examples
+ 
+--- Makefile.in.orig   2001-04-03 02:20:47.000000000 +0200
++++ Makefile.in   2008-09-30 23:17:05.000000000 +0200
+@@ -83,7 +83,7 @@
+ EXTRA_DIST =     ChangeLog    README    TEST    TODO
+ 
+ 
+-SUBDIRS = design-data doc scripts test-data src examples
++SUBDIRS = design-data doc scripts src examples
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = config.h
+
+--- src/Makefile.in.orig   2001-04-03 02:20:55.000000000 +0200
++++ src/Makefile.in   2008-09-30 23:18:50.000000000 +0200
+@@ -82,7 +82,7 @@
+ @WITH_PYTHON_TRUE@PYTHON_DIR = python
+ @WITH_PYTHON_FALSE@PYTHON_DIR =
+ 
+-SUBDIRS = libical libicalss libicalvcal $(PYTHON_DIR) test
++SUBDIRS = libical libicalss libicalvcal $(PYTHON_DIR)
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = ../config.h
+ CONFIG_CLEAN_FILES =
+
+--- src/Makefile.am.orig   2001-04-03 02:20:07.000000000 +0200
++++ src/Makefile.am   2008-09-30 23:28:55.000000000 +0200
+@@ -4,4 +4,4 @@
+ PYTHON_DIR =
+ endif
+ 
+-SUBDIRS = libical libicalss libicalvcal $(PYTHON_DIR) test
++SUBDIRS = libical libicalss libicalvcal $(PYTHON_DIR) 
