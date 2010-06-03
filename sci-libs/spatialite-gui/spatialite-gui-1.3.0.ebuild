@@ -20,7 +20,7 @@ SLOT="0"
 IUSE=""
 
 RDEPEND=">=sci-libs/spatialite-${SPATIALITE_VERSION}
-        =sci-libs/rasterlite-1.0
+        >=sci-libs/rasterlite-1.0
         >=x11-libs/wxGTK-2.8.10"
 DEPEND="${RDEPEND}"
 

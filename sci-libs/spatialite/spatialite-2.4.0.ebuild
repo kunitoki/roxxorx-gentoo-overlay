@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}"
 
 src_configure()
 {
-    epatch "${FILESDIR}"/${P}-quiet.patch
+    epatch "${FILESDIR}"/${PN}-2.3.1-quiet.patch
 
 	econf --enable-autoconf \
 		$(use_enable geos) --with-geos-lib=/usr/lib \
