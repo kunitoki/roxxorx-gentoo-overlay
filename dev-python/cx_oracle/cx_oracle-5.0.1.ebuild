@@ -12,7 +12,7 @@ RESTRICT="nomirror"
 
 LICENSE="Computronix"
 SLOT="0"
-KEYWORDS="~ia64 ~ppc ~x86"
+KEYWORDS="~ia64 ~ppc ~x86 ~amd64"
 IUSE="tests docs"
 
 DEPEND=">=dev-lang/python-2.2.2
