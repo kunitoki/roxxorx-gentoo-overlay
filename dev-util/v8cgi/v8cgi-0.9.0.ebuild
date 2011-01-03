@@ -28,17 +28,6 @@ S=${WORKDIR}/${MY_P}
 
 src_unpack() {
 	unpack ${A}
-	#if use dedicated || use server ; then
-	#	sed \
-	#		-e "s:GAMES_BINDIR:${GAMES_BINDIR}:" \
-	#		-e "s:GAMES_STATEDIR:${GAMES_STATEDIR}:" \
-	#		-e "s/GAMES_USER_DED/${GAMES_USER_DED}/" \
-	#		-e "s/GAMES_GROUP/${GAMES_GROUP}/" "${FILESDIR}"/wesnothd.rc \
-	#		> "${T}"/wesnothd \
-	#		|| die "sed failed"
-	#fi
-	#sed -e s/racv// -i "${S}"/po/LINGUAS \
-	#|| die "sed failed"
 }
 
 src_compile() {
