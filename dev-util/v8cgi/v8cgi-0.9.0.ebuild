@@ -1,0 +1,110 @@
+inherit eutils toolchain-funcs flag-o-matic
+
+MY_P=${P}-src
+LIB_P="v8"
+
+DESCRIPTION="Small set of C++ and JS libraries, allowing coder to use JS as a server-side HTTP processing language"
+HOMEPAGE="http://code.google.com/p/${PN}/"
+SRC_URI="http://${PN}.googlecode.com/files/${MY_P}.tar.gz"
+
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+IUSE="debug mysql postgres sqlite memcached fcgi gd xerces opengl apache"
+
+RDEPEND="dev-lang/v8
+    memcached? ( dev-libs/libmemcached )
+    apache? ( www-servers/apache )
+	opengl? ( virtual/opengl )
+	xerces? ( >=dev-libs/xerces-c-3.0.0 )
+	gd? ( media-libs/gd )
+	sqlite? ( dev-db/sqlite )
+	mysql? ( dev-db/mysql )
+	postgres? ( dev-db/postgresql-server )"
+DEPEND="${RDEPEND}
+	>=dev-util/scons-0.96.93"
+
+S=${WORKDIR}/${MY_P}
+
+src_unpack() {
+	unpack ${A}
+	#if use dedicated || use server ; then
+	#	sed \
+	#		-e "s:GAMES_BINDIR:${GAMES_BINDIR}:" \
+	#		-e "s:GAMES_STATEDIR:${GAMES_STATEDIR}:" \
+	#		-e "s/GAMES_USER_DED/${GAMES_USER_DED}/" \
+	#		-e "s/GAMES_GROUP/${GAMES_GROUP}/" "${FILESDIR}"/wesnothd.rc \
+	#		> "${T}"/wesnothd \
+	#		|| die "sed failed"
+	#fi
+	#sed -e s/racv// -i "${S}"/po/LINGUAS \
+	#|| die "sed failed"
+}
+
+src_compile() {
+	local myconf
+
+	filter-flags -ftracer -fomit-frame-pointer
+	if [[ $(gcc-major-version) -eq 3 ]] ; then
+		filter-flags -fstack-protector
+		append-flags -fno-stack-protector
+	fi
+	
+	myconf="${myconf} v8_path=/usr/lib/"
+	myconf="${myconf} os=posix"
+	
+	if use debug ; then
+		myconf="${myconf} debug=1"
+	fi
+	if use !mysql ; then
+		myconf="${myconf} mysql=0"
+	fi
+	if use postgres ; then
+		myconf="${myconf} pgsql=1"
+	fi
+	if use !sqlite ; then
+		myconf="${myconf} sqlite=0"
+	fi
+	if use fcgi ; then
+		myconf="${myconf} fcgi=1"
+	fi
+	if use !gd ; then
+		myconf="${myconf} gd=0"
+	fi
+	if use !memcached ; then
+		myconf="${myconf} memcached=0"
+	fi
+	if use xerces ; then
+		myconf="${myconf} xdom=1"
+	fi
+	if use opengl ; then
+		myconf="${myconf} gl=1"
+	fi
+	if use !apache ; then
+		myconf="${myconf} module=0"
+	fi
+
+    cd ${PN}
+	scons $myconf \
+		${MAKEOPTS/-l[0-9]} \
+		--implicit-deps-unchanged \
+		prefix=/usr \
+		icondir=/usr/share/icons \
+		desktopdir=/usr/share/applications \
+		docdir=/usr/share/doc/${PF} \
+		default_targets=none || die "scons failed"
+}
+
+src_install() {
+    cd ${PN}
+
+	dodir /usr/lib/${PN}
+	insinto /usr/lib/${PN}
+	doins lib/*
+
+    insinto /etc
+	newins v8cgi.conf.posix v8cgi.conf
+
+    dobin v8cgi
+}
+
