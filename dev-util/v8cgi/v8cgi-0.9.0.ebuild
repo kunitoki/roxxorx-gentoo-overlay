@@ -78,8 +78,6 @@ src_compile() {
 		${MAKEOPTS/-l[0-9]} \
 		--implicit-deps-unchanged \
 		prefix=/usr \
-		icondir=/usr/share/icons \
-		desktopdir=/usr/share/applications \
 		docdir=/usr/share/doc/${PF} \
 		default_targets=none || die "scons failed"
 }
@@ -87,9 +85,11 @@ src_compile() {
 src_install() {
     cd ${PN}
 
-	dodir /usr/lib/${PN}
 	insinto /usr/lib/${PN}
 	doins lib/*
+
+	insinto /usr/share/${PN}/example
+	doins example/*
 
     insinto /etc
 	newins v8cgi.conf.posix v8cgi.conf
