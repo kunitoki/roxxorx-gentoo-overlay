@@ -7,7 +7,7 @@ inherit distutils
 MY_P="cx_Oracle-${PV}"
 DESCRIPTION="Python extension module that allows access to Oracle Databases"
 HOMEPAGE="http://www.python.net/crew/atuining/cx_Oracle/"
-SRC_URI="http://easynews.dl.sourceforge.net/sourceforge/cx-oracle/${MY_P}.tar.gz"
+SRC_URI="http://prdownloads.sourceforge.net/cx-oracle/${MY_P}.tar.gz"
 RESTRICT="nomirror"
 
 LICENSE="Computronix"
