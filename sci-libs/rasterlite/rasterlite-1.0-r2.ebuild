@@ -19,8 +19,7 @@ KEYWORDS="~x86 ~amd64"
 SLOT="0"
 IUSE=""
 
-RDEPEND=">=dev-db/sqlite-3
-        >=sci-libs/spatialite-2.3.1
+RDEPEND=">=sci-libs/libspatialite-2.3.1
         sys-libs/zlib
         media-libs/libpng
         media-libs/tiff

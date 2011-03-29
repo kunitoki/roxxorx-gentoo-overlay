@@ -6,7 +6,7 @@ EAPI="2"
 
 inherit eutils
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="x86 amd64"
 
 DESCRIPTION="SpatiaLite Graphical User Interface"
 HOMEPAGE="http://www.gaia-gis.it/spatialite"
@@ -17,7 +17,7 @@ LICENSE="MPL-1.1"
 SLOT="0"
 IUSE=""
 
-RDEPEND="=sci-libs/spatialite-2.3.1
+RDEPEND="=sci-libs/libspatialite-2.3.1
         >=sci-libs/rasterlite-1.0
         >=x11-libs/wxGTK-2.8.10"
 DEPEND="${RDEPEND}"

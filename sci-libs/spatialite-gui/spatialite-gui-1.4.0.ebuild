@@ -48,6 +48,6 @@ src_install()
 {
 	emake DESTDIR="${D}" || die "einstall failed"
 
-	dobin "${S}"/bin/${PN}
+	dobin "${S}"/${MY_PN}
 }
 

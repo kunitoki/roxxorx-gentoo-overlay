@@ -34,10 +34,6 @@ src_configure()
 {
 	econf --enable-autoconf \
 		|| die "Error: econf failed"
-
-#		$(use_enable geos) --with-geos-lib=/usr/lib \
-#		$(use_enable proj) --with-proj-lib=/usr/lib \
-#		$(use_enable readline) \
 }
 
 src_install()
