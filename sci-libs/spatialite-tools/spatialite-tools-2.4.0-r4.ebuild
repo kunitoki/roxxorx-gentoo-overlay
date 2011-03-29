@@ -17,10 +17,10 @@ LICENSE="MPL-1.1"
 SLOT="0"
 IUSE="geos proj readline"
 
-RDEPEND="=sci-libs/spatialite-${PV}-r4
-        geos? ( >=sci-libs/geos-3.1 sci-libs/spatialite[geos] )
-        proj? ( sci-libs/proj sci-libs/spatialite[proj] )
-        readline? ( sys-libs/readline sci-libs/spatialite[readline] )"
+RDEPEND="=sci-libs/libspatialite-${PV}-r4
+        geos? ( >=sci-libs/geos-3.1 sci-libs/libspatialite[geos] )
+        proj? ( sci-libs/proj sci-libs/libspatialite[proj] )
+        readline? ( sys-libs/readline sci-libs/libspatialite[readline] )"
 DEPEND="${RDEPEND}"
 
 src_configure()
