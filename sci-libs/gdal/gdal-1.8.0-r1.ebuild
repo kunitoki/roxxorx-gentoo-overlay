@@ -19,7 +19,7 @@ SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="+aux_xml curl debug doc ecwj2k fits geos gif gml hdf5 jpeg jpeg2k mysql netcdf odbc ogdi oracle pdf perl png postgres python ruby sqlite threads"
+IUSE="+aux_xml curl debug doc ecwj2k fits geos gif gml hdf5 jpeg jpeg2k mysql netcdf odbc ogdi oracle pdf perl png postgres python ruby spatialite sqlite static-libs threads"
 
 RDEPEND="
 	dev-libs/expat
@@ -51,6 +51,7 @@ RDEPEND="
 	python? ( dev-python/numpy )
 	ruby? ( $(ruby_implementation_depend ruby18) )
 	sqlite? ( >=dev-db/sqlite-3 )
+	spatialite? ( >=sci-libs/libspatialite-2.3.1 )
 	oracle? ( dev-db/oracle-instantclient-basic )
 "
 
@@ -119,7 +120,6 @@ src_configure() {
 	# tiff is a hard dep
 	econf \
 		--enable-shared \
-		--disable-static \
 		--with-expat \
 		--without-grass \
 		--without-hdf4 \
@@ -132,7 +132,6 @@ src_configure() {
 		--without-bsb \
 		--without-dods-root \
 		--without-ingres \
-		--without-spatialite \
 		--without-dwgdirect \
 		--without-epsilon \
 		--without-idb \
@@ -145,6 +144,8 @@ src_configure() {
 		--with-libtiff \
 		--with-geotiff \
 		$(use_enable debug) \
+		$(use_with static-libs static) \
+		$(use_with spatialite) \
 		$(use_with postgres pg) \
 		$(use_with fits cfitsio) \
 		$(use_with netcdf) \
