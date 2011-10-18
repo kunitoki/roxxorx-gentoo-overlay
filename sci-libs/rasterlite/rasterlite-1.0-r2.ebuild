@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header$
 
-EAPI="2"
+EAPI="4"
 
 inherit eutils
 
@@ -19,7 +19,7 @@ KEYWORDS="~x86 ~amd64"
 SLOT="0"
 IUSE=""
 
-RDEPEND=">=sci-libs/libspatialite-2.3.1
+RDEPEND=">dev-db/spatialite-2.3.1
         sys-libs/zlib
         media-libs/libpng
         media-libs/tiff
