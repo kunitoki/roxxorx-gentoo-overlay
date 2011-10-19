@@ -8,7 +8,7 @@ MY_PV=${PV}-BETA
 MY_PN=lib${PN}
 MY_P=${MY_PN}-${PV}-beta
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="A complete Spatial DBMS in a nutshell built upon sqlite"
 HOMEPAGE="http://www.gaia-gis.it/spatialite"
@@ -17,23 +17,25 @@ SRC_URI="http://www.gaia-gis.it/${PN}-${MY_PV}/${MY_P}.tar.gz"
 LICENSE="MPL-1.1"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE="+geos iconv +proj freexl"
+IUSE="+geos iconv +proj excel"
 
 RDEPEND=">=dev-db/sqlite-3.7.5:3[extensions]
 	geos? ( sci-libs/geos )
 	proj? ( sci-libs/proj )
-	freexl? ( sci-libs/freexl )"
+	excel? ( sci-libs/freexl )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
 src_configure() {
+	epatch "${FILESDIR}/${MY_PN}-${PV}-quiet.patch"
+	
 	econf \
 		--disable-static \
 		--disable-geosadvanced \
 		--enable-geocallbacks \
 		--enable-epsg \
-		$(use_enable freexl) \
+		$(use_enable excel freexl) \
 		$(use_enable geos) \
 		$(use_enable iconv) \
 		$(use_enable proj)

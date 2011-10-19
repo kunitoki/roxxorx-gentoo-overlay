@@ -21,7 +21,7 @@ SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-IUSE="+aux_xml curl debug doc ecwj2k fits geos gif gml hdf5 jpeg jpeg2k mysql netcdf odbc ogdi oracle pdf perl png postgres python ruby sqlite threads"
+IUSE="+aux_xml curl debug doc ecwj2k fits geos gif gml hdf5 jpeg jpeg2k mysql netcdf odbc ogdi oracle opencl pdf perl png postgres python ruby sqlite threads"
 
 RDEPEND="
 	dev-libs/expat
@@ -142,13 +142,12 @@ src_configure() {
 		--without-msg \
 		--without-bsb \
 		--without-dods-root \
-		--without-oci \
 		--without-ingres \
-		--without-spatialite \
 		--without-dwgdirect \
 		--without-epsilon \
 		--without-idb \
 		--without-sde \
+		--without-spatialite \
 		--without-libtool \
 		--with-libz="${EPREFIX}/usr/" \
 		--with-ogr \
@@ -181,6 +180,7 @@ src_configure() {
 		$(use_with ruby) \
 		$(use_with python) \
 		$(use_with threads) \
+		$(use_with opencl) \
 		--with-pymoddir="${EPREFIX}"/$(python_get_sitedir)
 
 	# mysql-config puts this in (and boy is it a PITA to get it out)
