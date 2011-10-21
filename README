@@ -1,0 +1,23 @@
+Roxxorx is an online repository of gentoo portage ebuilds. It contains new ebuilds not present in portage or fixes and patches to existing ebuilds.
+
+Features:
+
+  Mapping
+    - spatialite/rasterlite for spatial database support
+    - better gdal/ogr for building plugins with mapnik
+    - gdal support for libecwj2 and oracle spatial
+    - tilecache for python image rtree caching
+
+  Terminals
+    - shellinabox for shell support thru http connections
+
+  Enterprise
+    - backupexec-ralus ebuild
+    - python SAP connectors
+    - better oracle instantclient autoconfiguration
+
+  Drivers
+    - nvidia-drivers for RT patched kernels
+
+And much, much more....
+
