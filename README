@@ -1,5 +1,6 @@
 Roxxorx is an online repository of gentoo portage ebuilds. It contains new ebuilds not present in portage or fixes and patches to existing ebuilds.
 
+
 Features:
 
   Mapping
@@ -19,5 +20,5 @@ Features:
   Drivers
     - nvidia-drivers for RT patched kernels
 
-And much, much more....
 
+And much, much more....
