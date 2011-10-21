@@ -1,0 +1,64 @@
+#!/sbin/runscript
+
+checkconfig() {
+    if [ -z "$BEREMOTE_OPTS" ]; then
+        eerror "You must set config options in /etc/conf.d/backupexec-ralus"
+        return 1
+    fi
+}
+
+start() {
+    local retstatus=1
+    local maxtry=15
+
+    # delete pidfile
+    rm -f /var/VRTSralus/ralus.pid
+    rm -f /var/VRTSralus/ralus.errpid
+
+    # display to the user what you're doing
+    ebegin "Starting Symantec Backup Exec Remote Agent"
+
+    #run the checkconfig function
+    checkconfig || return 1
+
+    # Start the process as a daemon and record the pid number
+    start-stop-daemon --start --quiet --background --pidfile /var/VRTSralus/ralus.pid \
+        --exec /opt/VRTSralus/bin/beremote -- ${BEREMOTE_OPTS} >/dev/null 2>&1
+
+    while [ "$maxtry" != "0" ]; do
+        if [ -f /var/VRTSralus/ralus.pid ]; then
+            maxtry=0
+        else
+            maxtry=$(($maxtry-1))
+            sleep 1;
+        fi
+        if [ -f /var/VRTSralus/ralus.errpid ]; then
+            maxtry=0
+        fi
+    done
+
+    if [ -f /var/VRTSralus/ralus.pid ]; then
+        retstatus=0
+    else
+        retstatus=1
+    fi
+
+    # output success or failure
+    eend $retstatus
+}
+
+stop() {
+    # display a message to the user
+    ebegin "Stopping Symantec Backup Exec Remote Agent"
+
+    # stop the daemon using the pid recorded from the start() function
+    start-stop-daemon --stop --quiet --pidfile /var/VRTSralus/ralus.pid --name beremote
+
+    # delete pidfile
+    rm -f /var/VRTSralus/ralus.pid
+    rm -f /var/VRTSralus/ralus.errpid
+
+    # output success or failure
+    eend $?
+}
+

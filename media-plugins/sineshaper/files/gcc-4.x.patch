@@ -1,0 +1,12 @@
+--- src/common/dssiplugin.hpp~  2007-04-27 09:08:10.000000000 +0000
++++ src/common/dssiplugin.hpp   2007-04-27 09:08:20.000000000 +0000
+@@ -26,6 +26,7 @@
+ 
+ #include <unistd.h>
+ 
++#include <cstdlib>
+ #include <cstring>
+ #include <string>
+ #include <vector>
+
+
