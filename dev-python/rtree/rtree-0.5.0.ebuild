@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pysnmp/pysnmp-4.1.12a.ebuild,v 1.1 2009/11/28 16:12:03 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit distutils
 
