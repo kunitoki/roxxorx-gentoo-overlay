@@ -17,7 +17,7 @@ PATCHES=""
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="-doc cairo csv curl debug +gdal geos kismet oracle postgres python sqlite rasterlite"
+IUSE="-doc cairo csv curl debug +gdal geos kismet oracle postgres python sqlite rasterlite test"
 
 RDEPEND="dev-libs/boost
 	dev-libs/icu
@@ -42,6 +42,9 @@ RDEPEND="dev-libs/boost
 		>=dev-db/postgis-1.5.2
 	)
 	python? ( dev-libs/boost[python] )
+    test? (
+        dev-python/nose
+    )
 	rasterlite? ( sci-libs/rasterlite )
 	sqlite? ( dev-db/sqlite:3 )"
 
@@ -51,11 +54,20 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${PN}"
 
-#src_unpack() {
-#	git_src_unpack
-#}
-
 src_prepare() {
+    if ( use oracle ) && [ -z "$ORACLE_HOME" ] ; then
+        eerror "ORACLE_HOME variable is not set."
+        eerror
+        eerror "You must install Oracle >= 10g client for Linux in"
+        eerror "order to compile mapnik with Oracle support."
+        eerror
+        eerror "Otherwise specify -oracle in your USE variable."
+        eerror
+        eerror "You can install Oracle instant client with"
+        eerror "  emerge -av oracle-instantclient-basic"
+        die
+    fi
+
 	sed -i \
 		-e "s|/usr/local|/usr|g" \
 		-e "s|Action(env\[config\]|Action('%s --help' % env\[config\]|" \
@@ -64,10 +76,8 @@ src_prepare() {
 	sed -i \
 		-e "s:mapniklibpath + '/fonts':'/usr/share/fonts/dejavu/':g" \
 	    bindings/python/build.py || die "sed 2 failed"
-	# rm -rf agg || die
-	# epatch "${FILESDIR}"/${P}-libagg.patch
 
-	# update for libpng 1.5 changes (see bug #)
+	# TODO - check this... update for libpng 1.5 changes (see bug #)
 	# epatch "${FILESDIR}"/${P}-libpng1.5.4.patch
 }
 
@@ -90,6 +100,9 @@ src_configure() {
 	use python || EMAKEOPTS="${EMAKEOPTS} BINDINGS=none"
 	use debug  && EMAKEOPTS="${EMAKEOPTS} DEBUG=yes"
 	EMAKEOPTS="${EMAKEOPTS} DESTDIR=${D}"
+
+    use oracle && EMAKEOPTS="${EMAKEOPTS} OCCI_INCLUDES = '${ORACLE_HOME}/include'"
+    use oracle && EMAKEOPTS="${EMAKEOPTS} OCCI_LIBS = '${ORACLE_HOME}/lib'"
 
 	use postgres && use sqlite && EMAKEOPTS="${EMAKEOPTS} PGSQL2SQLITE=yes"
 
