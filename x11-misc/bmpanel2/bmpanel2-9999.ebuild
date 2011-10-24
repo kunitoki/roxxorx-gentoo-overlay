@@ -6,7 +6,7 @@ EAPI=3
 
 SNAPSHOT="yes"
 
-inherit git cmake-utils
+inherit git-2 cmake-utils
 
 DESCRIPTION="NETWM compliant panel for X"
 HOMEPAGE="http://code.google.com/p/bmpanel2/"
@@ -35,11 +35,6 @@ RDEPEND="${DEPEND}"
 
 DOCS="INSTALL COPYING"
 CMAKE_IN_SOURCE_BUILD="1"
-
-src_unpack()
-{
-	git_src_unpack
-}
 
 src_configure()
 {
