@@ -19,7 +19,7 @@ KEYWORDS="~x86 ~amd64"
 SLOT="0"
 IUSE=""
 
-RDEPEND=">dev-db/spatialite-2.3.1
+RDEPEND="=dev-db/spatialite-3*
         sys-libs/zlib
         media-libs/libpng
         media-libs/tiff
@@ -31,6 +31,9 @@ DEPEND="${RDEPEND}"
 src_configure()
 {
 	econf || die "Error: econf failed"
+
+	# apply patches for spatialite-3.0.0
+	epatch "${FILESDIR}"/${P}-spatialite3.patch
 }
 
 src_install()

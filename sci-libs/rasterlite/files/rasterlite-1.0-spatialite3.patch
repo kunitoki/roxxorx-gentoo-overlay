@@ -1,0 +1,543 @@
+diff -Naur librasterlite-1.0/headers/rasterlite.h librasterlite-1.0-old/headers/rasterlite.h
+--- librasterlite-1.0/headers/rasterlite.h	2010-01-13 16:17:55.000000000 +0100
++++ librasterlite-1.0-old/headers/rasterlite.h	2011-10-24 23:24:01.077005107 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite.h
+ /
+ / public RasterLite declarations
+diff -Naur librasterlite-1.0/headers/rasterlite_internals.h librasterlite-1.0-old/headers/rasterlite_internals.h
+--- librasterlite-1.0/headers/rasterlite_internals.h	2010-01-13 16:17:55.000000000 +0100
++++ librasterlite-1.0-old/headers/rasterlite_internals.h	2011-10-24 23:24:06.497005111 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_internals.h
+ /
+ / internal declarations
+@@ -227,7 +227,7 @@
+ 			  double xsize, double ysize, double xllcorner,
+ 			  double yllcorner, const char *proj4text);
+ 
+-/* 
++/*
+ /
+ / DISCLAIMER:
+ / all the following code merely represents an 'ad hoc' adaption
+diff -Naur librasterlite-1.0/lib/rasterlite.c librasterlite-1.0-old/lib/rasterlite.c
+--- librasterlite-1.0/lib/rasterlite.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite.c	2011-10-24 23:24:18.424005115 +0200
+@@ -1,7 +1,7 @@
+-/* 
++/*
+ / rasterlite.c
+ /
+-/ the RasterLite library core 
++/ the RasterLite library core
+ /
+ / version 1.0, 2009 June 1
+ /
+@@ -36,7 +36,7 @@
+ #include <geovalues.h>
+ #include <tiffio.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiaexif.h>
+ #include <spatialite/gaiageo.h>
+ #include <spatialite.h>
+diff -Naur librasterlite-1.0/lib/rasterlite_gif.c librasterlite-1.0-old/lib/rasterlite_gif.c
+--- librasterlite-1.0/lib/rasterlite_gif.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_gif.c	2011-10-24 23:24:22.497005116 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_gif.c
+ /
+ / GIF auxiliary helpers
+@@ -29,14 +29,14 @@
+ #include <string.h>
+ #include <stdlib.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include <tiffio.h>
+ 
+ #include "rasterlite_internals.h"
+ 
+-/* 
++/*
+ /
+ / DISCLAIMER:
+ / all the following code merely is an 'ad hoc' adaption
+diff -Naur librasterlite-1.0/lib/rasterlite_image.c librasterlite-1.0-old/lib/rasterlite_image.c
+--- librasterlite-1.0/lib/rasterlite_image.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_image.c	2011-10-24 23:24:26.161005118 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_image.c
+ /
+ / image methods
+@@ -30,7 +30,7 @@
+ #include <limits.h>
+ 
+ #include <tiffio.h>
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include "rasterlite_internals.h"
+diff -Naur librasterlite-1.0/lib/rasterlite_io.c librasterlite-1.0-old/lib/rasterlite_io.c
+--- librasterlite-1.0/lib/rasterlite_io.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_io.c	2011-10-24 23:23:42.713005100 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_io.c
+ /
+ / IO helper methods
+@@ -30,7 +30,7 @@
+ #include <limits.h>
+ 
+ #include <tiffio.h>
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include "rasterlite_internals.h"
+@@ -38,7 +38,7 @@
+ #define TRUE 1
+ #define FALSE 0
+ 
+-/* 
++/*
+ /
+ / DISCLAIMER:
+ / all the following code merely is an 'ad hoc' adaption
+diff -Naur librasterlite-1.0/lib/rasterlite_jpeg.c librasterlite-1.0-old/lib/rasterlite_jpeg.c
+--- librasterlite-1.0/lib/rasterlite_jpeg.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_jpeg.c	2011-10-24 23:20:58.511005032 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_jpeg.c
+ /
+ / JPEG auxiliary helpers
+@@ -30,7 +30,7 @@
+ #include <limits.h>
+ #include <string.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include <tiffio.h>
+@@ -40,7 +40,7 @@
+ 
+ #include "rasterlite_internals.h"
+ 
+-/* 
++/*
+ /
+ / DISCLAIMER:
+ / all the following code merely is an 'ad hoc' adaption
+diff -Naur librasterlite-1.0/lib/rasterlite_png.c librasterlite-1.0-old/lib/rasterlite_png.c
+--- librasterlite-1.0/lib/rasterlite_png.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_png.c	2011-10-24 23:23:46.873005102 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_png.c
+ /
+ / PNG auxiliary helpers
+@@ -29,7 +29,7 @@
+ #include <string.h>
+ #include <stdlib.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include <tiffio.h>
+@@ -41,7 +41,7 @@
+ 
+ #include "rasterlite_internals.h"
+ 
+-/* 
++/*
+ /
+ / DISCLAIMER:
+ / all the following code merely is an 'ad hoc' adaption
+diff -Naur librasterlite-1.0/lib/rasterlite_tiff.c librasterlite-1.0-old/lib/rasterlite_tiff.c
+--- librasterlite-1.0/lib/rasterlite_tiff.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_tiff.c	2011-10-24 23:23:50.794005103 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_tiff.c
+ /
+ / TIFF auxiliary helpers
+@@ -36,7 +36,7 @@
+ #include <geovalues.h>
+ #include <geo_normalize.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include "rasterlite_internals.h"
+diff -Naur librasterlite-1.0/lib/rasterlite_wavelet.c librasterlite-1.0-old/lib/rasterlite_wavelet.c
+--- librasterlite-1.0/lib/rasterlite_wavelet.c	2010-01-13 16:17:53.000000000 +0100
++++ librasterlite-1.0-old/lib/rasterlite_wavelet.c	2011-10-24 23:23:56.017005106 +0200
+@@ -1,4 +1,4 @@
+-/* 
++/*
+ / rasterlite_wavelet.c
+ /
+ / WAVELET auxiliary helpers
+@@ -31,16 +31,16 @@
+ 
+ #include <epsilon.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiageo.h>
+ 
+ #include <tiffio.h>
+ 
+ #include "rasterlite_internals.h"
+ 
+-/* 
++/*
+ /
+-/ this code is widely based upon the cmd_encode_file.c 
++/ this code is widely based upon the cmd_encode_file.c
+ / source from the 'epsilon' library
+ /
+ */
+diff -Naur librasterlite-1.0/src/rasterlite_load.c librasterlite-1.0-old/src/rasterlite_load.c
+--- librasterlite-1.0/src/rasterlite_load.c	2010-01-13 16:17:50.000000000 +0100
++++ librasterlite-1.0-old/src/rasterlite_load.c	2011-10-24 23:28:09.055005212 +0200
+@@ -1,7 +1,7 @@
+-/* 
++/*
+ / rasterlite_load.c
+ /
+-/ a tool for uploading GeoTIFF rasters into a SpatiaLite DB 
++/ a tool for uploading GeoTIFF rasters into a SpatiaLite DB
+ /
+ / version 1.0, 2009 June 1
+ /
+@@ -43,7 +43,7 @@
+ #include <dirent.h>
+ #endif
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiaexif.h>
+ #include <spatialite/gaiageo.h>
+ #include <spatialite.h>
+@@ -704,13 +704,13 @@
+ 	  return 0;
+       }
+ 
+-/* 
++/*
+ / inserting a fake row to prime the DB table
+ /
+ / for some unclear reason the first INSERT seems to fail anyway,
+ / so we'll perform a fake insert as a tricky solution
+ / ...
+-/ it seems to work - hope well !!! 
++/ it seems to work - hope well !!!
+ */
+     sprintf (sql, "INSERT INTO \"%s_metadata\" ", infos->table);
+     strcat (sql,
+@@ -848,7 +848,7 @@
+     if (bits_per_sample == 8 && samples_per_pixel == 1 && photometric < 2)
+       {
+ 	  colorspace_name = (const char *) "GrayScale - 256 levels";
+-	  format_hint = (const char *) "JPEG / WAVELET / PNG / TIFF";
++	  format_hint = (const char *) "JPEG / PNG / TIFF";
+ 	  if (image_type == GAIA_TIFF_BLOB)
+ 	    {
+ 		strcpy (dummy, "TIFF [GRAYSCALE]");
+@@ -859,12 +859,6 @@
+ 		strcpy (dummy, "PNG [GRAYSCALE]");
+ 		infos.image_type = IMAGE_PNG_GRAYSCALE;
+ 	    }
+-	  else if (image_type == IMAGE_WAVELET_RGB)
+-	    {
+-		sprintf (dummy, "WAVELET [GRAYSCALE] compression ratio 1:%d",
+-			 quality_factor);
+-		infos.image_type = IMAGE_WAVELET_BW;
+-	    }
+ 	  else
+ 	    {
+ 		sprintf (dummy, "JPEG [GRAYSCALE] quality=%d", quality_factor);
+@@ -875,7 +869,7 @@
+     if (samples_per_pixel >= 3)
+       {
+ 	  colorspace_name = (const char *) "RGB - TrueColor";
+-	  format_hint = (const char *) "JPEG / WAVELET / TIFF";
++	  format_hint = (const char *) "JPEG / TIFF";
+ 	  if (image_type == GAIA_TIFF_BLOB)
+ 	    {
+ 		sprintf (dummy, "TIFF [RGB]");
+@@ -886,12 +880,6 @@
+ 		sprintf (dummy, "PNG [RGB]");
+ 		infos.image_type = IMAGE_PNG_RGB;
+ 	    }
+-	  else if (image_type == GAIA_WAVELET_BLOB)
+-	    {
+-		sprintf (dummy, "WAVELET [RGB] compression ratio 1:%d",
+-			 quality_factor);
+-		infos.image_type = IMAGE_WAVELET_RGB;
+-	    }
+ 	  else
+ 	    {
+ 		sprintf (dummy, "JPEG [RGB] quality=%d", quality_factor);
+@@ -1502,8 +1490,6 @@
+ 			  image_type = GAIA_GIF_BLOB;
+ 		      if (strcasecmp (argv[i], "TIFF") == 0)
+ 			  image_type = GAIA_TIFF_BLOB;
+-		      if (strcasecmp (argv[i], "WAVELET") == 0)
+-			  image_type = GAIA_WAVELET_BLOB;
+ 		      break;
+ 		  case ARG_QUALITY_FACTOR:
+ 		      quality_factor = atoi (argv[i]);
+@@ -1671,16 +1657,6 @@
+ 	  if (quality_factor > 90)
+ 	      quality_factor = 90;
+       }
+-    if (image_type == GAIA_WAVELET_BLOB)
+-      {
+-	  /* normalizing the commpression factor */
+-	  if (quality_factor == -999999)
+-	      quality_factor = 25;
+-	  if (quality_factor < 10)
+-	      quality_factor = 10;
+-	  if (quality_factor > 200)
+-	      quality_factor = 200;
+-      }
+     printf ("=====================================================\n");
+     printf ("             Arguments Summary\n");
+     printf ("=====================================================\n");
+@@ -1717,10 +1693,6 @@
+       case GAIA_TIFF_BLOB:
+ 	  printf ("Tile image type: TIFF\n");
+ 	  break;
+-      case GAIA_WAVELET_BLOB:
+-	  printf ("Tile image type: WAVELET compression ratio 1:%d\n",
+-		  quality_factor);
+-	  break;
+       default:
+ 	  printf ("Tile image type: UNKNOWN\n");
+ 	  break;
+diff -Naur librasterlite-1.0/src/rasterlite_pyramid.c librasterlite-1.0-old/src/rasterlite_pyramid.c
+--- librasterlite-1.0/src/rasterlite_pyramid.c	2010-01-13 16:17:50.000000000 +0100
++++ librasterlite-1.0-old/src/rasterlite_pyramid.c	2011-10-24 23:29:16.824005239 +0200
+@@ -1,7 +1,7 @@
+-/* 
++/*
+ / rasterlite_pyramid.c
+ /
+-/ a tool building raster pyramids into a SpatiaLite DB 
++/ a tool building raster pyramids into a SpatiaLite DB
+ /
+ / version 1.0, 2009 June 1
+ /
+@@ -37,7 +37,7 @@
+ #include <geovalues.h>
+ #include <tiffio.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiaexif.h>
+ #include <spatialite/gaiageo.h>
+ #include <spatialite.h>
+@@ -45,7 +45,7 @@
+ #include "rasterlite.h"
+ #include "rasterlite_internals.h"
+ 
+-#ifdef _WIN32 
++#ifdef _WIN32
+ #define strcasecmp	_stricmp
+ #endif /* not WIN32 */
+ 
+@@ -276,8 +276,6 @@
+ 	img = image_from_gif (blob_size, (void *) blob);
+     else if (type == GAIA_TIFF_BLOB)
+ 	img = image_from_tiff (blob_size, (void *) blob);
+-    else if (type == GAIA_WAVELET_BLOB)
+-	img = image_from_wavelet (blob_size, (void *) blob);
+     return img;
+ }
+ 
+@@ -453,15 +451,6 @@
+ 		goto end;
+ 	    }
+       }
+-    else if (image_type == GAIA_WAVELET_BLOB)
+-      {
+-	  blob = image_to_wavelet (thumbnail, &blob_size, quality_factor);
+-	  if (!blob)
+-	    {
+-		printf ("WAVELET compression error\n");
+-		goto end;
+-	    }
+-      }
+     else
+       {
+ 	  blob = image_to_jpeg (thumbnail, &blob_size, quality_factor);
+@@ -1345,8 +1334,8 @@
+     if (to_be_deleted)
+       {
+ 	  /*
+-	     / deleting any already existing thumbnail tile 
+-	     / the complete operation is handled as an unique SQL Transaction 
++	     / deleting any already existing thumbnail tile
++	     / the complete operation is handled as an unique SQL Transaction
+ 	   */
+ 	  ret = sqlite3_exec (handle, "BEGIN", NULL, NULL, &sql_err);
+ 	  if (ret != SQLITE_OK)
+@@ -1661,8 +1650,6 @@
+ 		  case ARG_IMAGE_TYPE:
+ 		      if (strcasecmp (argv[i], "JPEG") == 0)
+ 			  image_type = GAIA_JPEG_BLOB;
+-		      if (strcasecmp (argv[i], "WAVELET") == 0)
+-			  image_type = GAIA_WAVELET_BLOB;
+ 		      if (strcasecmp (argv[i], "PNG") == 0)
+ 			  image_type = GAIA_PNG_BLOB;
+ 		      if (strcasecmp (argv[i], "TIFF") == 0)
+@@ -1775,16 +1762,6 @@
+ 	  if (quality_factor > 90)
+ 	      quality_factor = 90;
+       }
+-    if (image_type == GAIA_WAVELET_BLOB)
+-      {
+-	  /* normalizing the commpression factor */
+-	  if (quality_factor == -999999)
+-	      quality_factor = 25;
+-	  if (quality_factor < 10)
+-	      quality_factor = 10;
+-	  if (quality_factor > 200)
+-	      quality_factor = 200;
+-      }
+     printf ("=====================================================\n");
+     printf ("             Arguments Summary\n");
+     printf ("=====================================================\n");
+@@ -1799,10 +1776,6 @@
+       case GAIA_JPEG_BLOB:
+ 	  printf ("Pyramid Tile image type: JPEG quality=%d\n", quality_factor);
+ 	  break;
+-      case GAIA_WAVELET_BLOB:
+-	  printf ("Pyramid Tile image type: WAVELET compression ratio 1:%d\n",
+-		  quality_factor);
+-	  break;
+       case GAIA_PNG_BLOB:
+ 	  printf ("Pyramid Tile image type: PNG [RGB]\n");
+ 	  break;
+diff -Naur librasterlite-1.0/src/rasterlite_tool.c librasterlite-1.0-old/src/rasterlite_tool.c
+--- librasterlite-1.0/src/rasterlite_tool.c	2010-01-13 16:17:50.000000000 +0100
++++ librasterlite-1.0-old/src/rasterlite_tool.c	2011-10-24 22:53:33.343004346 +0200
+@@ -31,7 +31,7 @@
+ 
+ #include <tiffio.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiaexif.h>
+ #include <spatialite/gaiageo.h>
+ #include <spatialite.h>
+diff -Naur librasterlite-1.0/src/rasterlite_topmost.c librasterlite-1.0-old/src/rasterlite_topmost.c
+--- librasterlite-1.0/src/rasterlite_topmost.c	2010-01-13 16:17:50.000000000 +0100
++++ librasterlite-1.0-old/src/rasterlite_topmost.c	2011-10-24 23:30:39.539005274 +0200
+@@ -1,7 +1,7 @@
+-/* 
++/*
+ / rasterlite_topmpst.c
+ /
+-/ a tool building raster topmost pyramid's levels into a SpatiaLite DB 
++/ a tool building raster topmost pyramid's levels into a SpatiaLite DB
+ /
+ / version 1.0, 2009 June 25
+ /
+@@ -33,7 +33,7 @@
+ 
+ #include <tiffio.h>
+ 
+-#include <spatialite/sqlite3.h>
++#include <sqlite3.h>
+ #include <spatialite/gaiaexif.h>
+ #include <spatialite/gaiageo.h>
+ #include <spatialite.h>
+@@ -461,15 +461,6 @@
+ 		return 0;
+ 	    }
+       }
+-    else if (info->image_type == GAIA_WAVELET_BLOB)
+-      {
+-	  blob = image_to_wavelet (thumbnail, &blob_size, info->quality_factor);
+-	  if (!blob)
+-	    {
+-		printf ("WAVELET compression error\n");
+-		return 0;
+-	    }
+-      }
+     else
+       {
+ 	  blob = image_to_jpeg (thumbnail, &blob_size, info->quality_factor);
+@@ -1064,8 +1055,8 @@
+     if (to_be_deleted)
+       {
+ 	  /*
+-	     / deleting any already existing thumbnail tile 
+-	     / the complete operation is handled as an unique SQL Transaction 
++	     / deleting any already existing thumbnail tile
++	     / the complete operation is handled as an unique SQL Transaction
+ 	   */
+ 	  ret = sqlite3_exec (handle, "BEGIN", NULL, NULL, &sql_err);
+ 	  if (ret != SQLITE_OK)
+@@ -1421,8 +1412,6 @@
+ 		  case ARG_IMAGE_TYPE:
+ 		      if (strcasecmp (argv[i], "JPEG") == 0)
+ 			  image_type = GAIA_JPEG_BLOB;
+-		      if (strcasecmp (argv[i], "WAVELET") == 0)
+-			  image_type = GAIA_WAVELET_BLOB;
+ 		      if (strcasecmp (argv[i], "PNG") == 0)
+ 			  image_type = GAIA_PNG_BLOB;
+ 		      if (strcasecmp (argv[i], "TIFF") == 0)
+@@ -1592,16 +1581,6 @@
+ 	  if (quality_factor > 90)
+ 	      quality_factor = 90;
+       }
+-    if (image_type == GAIA_WAVELET_BLOB)
+-      {
+-	  /* normalizing the commpression factor */
+-	  if (quality_factor == -999999)
+-	      quality_factor = 25;
+-	  if (quality_factor < 10)
+-	      quality_factor = 10;
+-	  if (quality_factor > 200)
+-	      quality_factor = 200;
+-      }
+     printf ("=====================================================\n");
+     printf ("             Arguments Summary\n");
+     printf ("=====================================================\n");
+@@ -1618,11 +1597,6 @@
+ 	  printf ("Topmost Pyramid Tile image type: JPEG quality=%d\n",
+ 		  quality_factor);
+ 	  break;
+-      case GAIA_WAVELET_BLOB:
+-	  printf
+-	      ("Topmost Pyramid Tile image type: WAVELET compression ratio 1:%d\n",
+-	       quality_factor);
+-	  break;
+       case GAIA_PNG_BLOB:
+ 	  printf ("Topmost Pyramid Tile image type: PNG [RGB]\n");
+ 	  break;
