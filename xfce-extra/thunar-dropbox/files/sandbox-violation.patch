@@ -1,0 +1,24 @@
+--- a/wscript	2011-01-18 20:22:06.000000000 +0100
++++ b/wscript	2011-11-03 21:16:20.494861159 +0100
+@@ -29,12 +29,12 @@
+ 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/apps', 'data/icons/hicolor/16x16/apps/thunar-dropbox.png')
+ 	bld.install_as('${PREFIX}/lib/thunarx-2/thunar-dropbox.so', 'libthunar-dropbox.so')
+ 
+-def shutdown():
+-	if Options.commands['install'] or Options.commands['uninstall']:
+-		dir = '%s/share/icons/hicolor' % Build.bld.env['PREFIX']
+-		command = 'gtk-update-icon-cache -q -t -f %s 2> /dev/null' % dir
+-		try:
+-			if Utils.exec_command(command):
+-				Utils.pprint('YELLOW', 'Icon cache not updated.')
+-		except:
+-			pass
++#def shutdown():
++#	if Options.commands['install'] or Options.commands['uninstall']:
++#		dir = '%s/share/icons/hicolor' % Build.bld.env['PREFIX']
++#		command = 'gtk-update-icon-cache -q -t -f %s 2> /dev/null' % dir
++#		try:
++#			if Utils.exec_command(command):
++#				Utils.pprint('YELLOW', 'Icon cache not updated.')
++#		except:
++#			pass
