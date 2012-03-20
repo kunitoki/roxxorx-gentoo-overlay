@@ -24,11 +24,14 @@ RDEPEND=">=sci-libs/libspatialite-3.0.1
         sci-libs/proj"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${MY_P}
+S=${WORKDIR}/${P}
 
 src_configure()
 {
-	econf || die "Error: econf failed"
+	cd "${S}"
+	
+	econf --enable-autoconf \
+		|| die "Error: econf failed"
 }
 
 src_install()

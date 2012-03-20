@@ -20,6 +20,7 @@ IUSE=""
 
 RDEPEND=">=sci-libs/libspatialite-3.0.1
         >=sci-libs/librasterlite-1.1b
+	media-libs/libharu
         >=x11-libs/wxGTK-2.8.10"
 DEPEND="${RDEPEND}"
 
@@ -29,16 +30,13 @@ src_configure()
 {
 	cd "${S}"
 
-	# Fix wrong hard coded paths
-	sed -e "s:/usr/local/lib:/usr/lib:g" -i ./Makefile
-
-	# Fix wrong code supporting GCC4.3
-	#sed -e "s:double minx, double minx:double minx, double miny:g" -i ./Classdef.h
+	econf --enable-autoconf \
+		|| die "Error: econf failed"
 }
 
 src_install()
 {
 	emake DESTDIR="${D}" || die "einstall failed"
 
-	dobin "${S}"/bin/${PN}
+	dobin "${S}"/${MY_PN}
 }
