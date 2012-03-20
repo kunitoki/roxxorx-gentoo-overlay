@@ -2,34 +2,29 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/spatialite/spatialite-2.4.0_rc4.ebuild,v 1.3 2011/08/07 12:03:49 maekke Exp $
 
-EAPI=4
-
-MY_PV=${PV}-BETA
-MY_PN=lib${PN}
-MY_P=${MY_PN}-${PV}-beta
+EAPI="4"
 
 inherit multilib eutils
 
 DESCRIPTION="A complete Spatial DBMS in a nutshell built upon sqlite"
-HOMEPAGE="http://www.gaia-gis.it/spatialite"
-SRC_URI="http://www.gaia-gis.it/${PN}-${MY_PV}/${MY_P}.tar.gz"
+HOMEPAGE="https://www.gaia-gis.it/fossil/libspatialite/index"
+SRC_URI="http://www.gaia-gis.it/gaia-sins/${P}.tar.gz"
 
 LICENSE="MPL-1.1"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+geos iconv +proj excel"
 
 RDEPEND=">=dev-db/sqlite-3.7.5:3[extensions]
+    >=sci-libs/libgaiagraphics-0.4b
 	geos? ( sci-libs/geos )
 	proj? ( sci-libs/proj )
-	excel? ( sci-libs/freexl )"
+	excel? ( >=sci-libs/freexl-1.0.0b )"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${MY_P}
+S=${WORKDIR}/${P}
 
 src_configure() {
-	epatch "${FILESDIR}/${MY_PN}-${PV}-quiet.patch"
-	
 	econf \
 		--disable-static \
 		--disable-geosadvanced \

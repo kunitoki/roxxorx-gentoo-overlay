@@ -4,22 +4,18 @@
 
 EAPI="4"
 
-inherit eutils
-
-MY_P=lib${PN}-${PV}
-S=${WORKDIR}/${MY_P}
+inherit eutils multilib
 
 DESCRIPTION="Raterlite a library supporting Raster Data Sources within a SpatiaLite DB."
-HOMEPAGE="http://www.gaia-gis.it/spatialite"
-SRC_URI="http://www.gaia-gis.it/spatialite-2.4.0/${MY_P}.tar.gz"
+HOMEPAGE="https://www.gaia-gis.it/fossil/librasterlite/index"
+SRC_URI="http://www.gaia-gis.it/gaia-sins/${P}.tar.gz"
 
 LICENSE="MPL-1.1"
-
-KEYWORDS="~x86 ~amd64"
 SLOT="0"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-RDEPEND="=dev-db/spatialite-3*
+RDEPEND=">=sci-libs/libspatialite-3.0.1
         sys-libs/zlib
         media-libs/libpng
         media-libs/tiff
@@ -28,12 +24,11 @@ RDEPEND="=dev-db/spatialite-3*
         sci-libs/proj"
 DEPEND="${RDEPEND}"
 
+S=${WORKDIR}/${MY_P}
+
 src_configure()
 {
 	econf || die "Error: econf failed"
-
-	# apply patches for spatialite-3.0.0
-	epatch "${FILESDIR}"/${P}-spatialite3.patch
 }
 
 src_install()

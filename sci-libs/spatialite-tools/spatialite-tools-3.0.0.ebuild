@@ -6,28 +6,25 @@ EAPI="4"
 
 inherit eutils
 
-SPATIALITE_VERSION="3.0.0"
-SPATIALITE_V="${SPATIALITE_VERSION}-BETA"
-MY_P="${P}-beta"
-
+MY_P="${P}-stable"
 
 DESCRIPTION="SpatiaLite CLI tools"
-HOMEPAGE="http://www.gaia-gis.it/spatialite"
-SRC_URI="http://www.gaia-gis.it/spatialite-${SPATIALITE_V}/${MY_P}.tar.gz"
+HOMEPAGE="https://www.gaia-gis.it/fossil/spatialite-tools/index"
+SRC_URI="http://www.gaia-gis.it/gaia-sins/${MY_P}.tar.gz"
 
 LICENSE="MPL-1.1"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="geos proj readline excel"
 
-RDEPEND="=dev-db/spatialite-${SPATIALITE_VERSION}
-        geos? ( >=sci-libs/geos-3.1 dev-db/spatialite[geos] )
-        proj? ( sci-libs/proj dev-db/spatialite[proj] )
-		excel? ( sci-libs/freexl )
+RDEPEND=">=sci-libs/libspatialite-3.0.1
+        geos? ( >=sci-libs/geos-3.1 sci-libs/libspatialite[geos] )
+        proj? ( sci-libs/proj sci-libs/libspatialite[proj] )
+		excel? ( >=sci-libs/freexl-1.0.0b )
         readline? ( sys-libs/readline )"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${MY_P}"
+S=${WORKDIR}/${MY_P}
 
 src_configure()
 {
