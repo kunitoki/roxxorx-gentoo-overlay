@@ -16,7 +16,7 @@ IUSE=""
 
 RDEPEND="sys-libs/zlib
   media-libs/libpng
-  media-libs/jpeg
+  virtual/jpeg
   media-libs/tiff
   sci-libs/libgeotiff
   sci-libs/proj
