@@ -18,9 +18,9 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-RDEPEND=">=sci-libs/libspatialite-3.0.1
+RDEPEND=">=dev-db/spatialite-3.0.1
         >=sci-libs/librasterlite-1.1b
-	media-libs/libharu
+        media-libs/libharu
         >=x11-libs/wxGTK-2.8.10"
 DEPEND="${RDEPEND}"
 

@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-RDEPEND=">=sci-libs/libspatialite-3.0.1
+RDEPEND=">=dev-db/spatialite-3.0.1
         >=sci-libs/libgaiagraphics-0.4b
         >=dev-libs/freexl-1.0.0b
         >=x11-libs/wxGTK-2.8.10"
