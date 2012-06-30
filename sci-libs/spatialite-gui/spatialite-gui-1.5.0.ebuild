@@ -20,7 +20,7 @@ IUSE=""
 
 RDEPEND=">=sci-libs/libspatialite-3.0.1
         >=sci-libs/libgaiagraphics-0.4b
-	>=sci-libs/freexl-1.0.0b
+        >=dev-libs/freexl-1.0.0b
         >=x11-libs/wxGTK-2.8.10"
 DEPEND="${RDEPEND}"
 

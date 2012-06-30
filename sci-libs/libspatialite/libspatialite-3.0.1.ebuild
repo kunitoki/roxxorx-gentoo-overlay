@@ -13,13 +13,13 @@ SRC_URI="http://www.gaia-gis.it/gaia-sins/${P}.tar.gz"
 LICENSE="MPL-1.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+geos iconv +proj excel"
+IUSE="+geos iconv +proj xls"
 
 RDEPEND=">=dev-db/sqlite-3.7.5:3[extensions]
     >=sci-libs/libgaiagraphics-0.4b
 	geos? ( sci-libs/geos )
 	proj? ( sci-libs/proj )
-	excel? ( >=sci-libs/freexl-1.0.0b )"
+	xls? ( >=dev-libs/freexl-1.0.0b )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${P}

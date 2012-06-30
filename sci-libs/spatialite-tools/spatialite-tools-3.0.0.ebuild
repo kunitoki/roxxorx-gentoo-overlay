@@ -15,12 +15,12 @@ SRC_URI="http://www.gaia-gis.it/gaia-sins/${MY_P}.tar.gz"
 LICENSE="MPL-1.1"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="geos proj readline excel"
+IUSE="geos proj readline xls"
 
 RDEPEND=">=sci-libs/libspatialite-3.0.1
         geos? ( >=sci-libs/geos-3.1 sci-libs/libspatialite[geos] )
         proj? ( sci-libs/proj sci-libs/libspatialite[proj] )
-		excel? ( >=sci-libs/freexl-1.0.0b )
+		xls? ( >=dev-libs/freexl-1.0.0b )
         readline? ( sys-libs/readline )"
 DEPEND="${RDEPEND}"
 
@@ -33,7 +33,7 @@ src_configure()
 		--with-spatialite-lib=/usr/lib \
 		$(use_enable geos) --with-geos-lib=/usr/lib \
 		$(use_enable proj) --with-proj-lib=/usr/lib \
-		$(use_enable excel freexl) \
+		$(use_enable xls freexl) \
 		$(use_enable readline) \
 		|| die "econf failed"
 }
