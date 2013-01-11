@@ -20,5 +20,8 @@ Features:
   Drivers
     - nvidia-drivers for RT patched kernels
 
+  Binary applications
+    - lightworks (alpha)
+
 
 And much, much more....
