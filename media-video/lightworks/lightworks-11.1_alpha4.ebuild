@@ -17,55 +17,55 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="
-	dev-libs/glib
-	dev-libs/atk
-	dev-libs/expat
-	dev-libs/libffi
-	sys-apps/dbus
-	sys-fs/udev
+    dev-libs/glib
+    dev-libs/atk
+    dev-libs/expat
+    dev-libs/libffi
+    sys-apps/dbus
+    sys-fs/udev
     x11-libs/pango
-	x11-libs/gdk-pixbuf
-	x11-libs/cairo
-	x11-libs/pixman
-	x11-libs/gtk+:3
-	x11-libs/qt-gui
-	x11-libs/qt-core
-	virtual/jpeg
-	media-libs/libpng
-	media-libs/tiff:3
-	>=media-libs/freetype-2
-	media-libs/fontconfig
-	media-libs/mesa
-	media-libs/glu
-	media-gfx/nvidia-cg-toolkit
-	x11-libs/libxcb
-	x11-libs/libXinerama
-	x11-libs/libXrandr
-	x11-libs/libXcursor
-	x11-libs/libXext
-	x11-libs/libXi
-	x11-libs/libXcomposite
-	x11-libs/libXdamage
-	x11-libs/libXrender
-	x11-libs/libXfixes
-	x11-libs/libICE
-	x11-libs/libSM
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libXdmcp
-	x11-libs/libdrm
-	app-accessibility/at-spi2-core
+    x11-libs/gdk-pixbuf
+    x11-libs/cairo
+    x11-libs/pixman
+    x11-libs/gtk+:3
+    x11-libs/qt-gui
+    x11-libs/qt-core
+    virtual/jpeg
+    media-libs/libpng
+    media-libs/tiff:3
+    >=media-libs/freetype-2
+    media-libs/fontconfig
+    media-libs/mesa
+    media-libs/glu
+    media-gfx/nvidia-cg-toolkit
+    x11-libs/libxcb
+    x11-libs/libXinerama
+    x11-libs/libXrandr
+    x11-libs/libXcursor
+    x11-libs/libXext
+    x11-libs/libXi
+    x11-libs/libXcomposite
+    x11-libs/libXdamage
+    x11-libs/libXrender
+    x11-libs/libXfixes
+    x11-libs/libICE
+    x11-libs/libSM
+    x11-libs/libX11
+    x11-libs/libXau
+    x11-libs/libXdmcp
+    x11-libs/libdrm
+    app-accessibility/at-spi2-core
 "
 
 DEPEND="${RDEPEND}
     !app-arch/deb2targz
-	app-arch/unzip
+    app-arch/unzip
     x11-apps/mkfontdir"
 
 S="${WORKDIR}"
 
 pkg_setup() {
-	:;
+    :;
 }
 
 src_unpack() {
