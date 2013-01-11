@@ -92,7 +92,8 @@ src_compile() {
 }
 
 src_install() {
-    dobin usr/bin/${PN} || die "doins bin failed"
+    insinto /usr/bin
+    doins usr/bin/${PN} || die "doins bin failed"
 
     insinto /usr/lib/${PN}
     doins -r usr/lib/${PN}/* || die "doins lib failed"
