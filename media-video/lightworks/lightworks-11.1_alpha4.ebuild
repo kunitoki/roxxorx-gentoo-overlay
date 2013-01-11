@@ -91,11 +91,14 @@ src_compile() {
 }
 
 src_install() {
-    insinto /usr/bin
-    doins usr/bin/${PN} || die "doins bin failed"
-
-    insinto /usr/lib/${PN}
+    insinto /usr/lib64/${PN}
     doins -r usr/lib/${PN}/* || die "doins lib failed"
+
+    exeinto /usr/lib64/${PN}
+    doexe usr/lib/${PN}/spawn || die "doins lib-exe failed"
+    doexe usr/lib/${PN}/ntcardvt || die "doins lib-exe failed"
+
+    dosym /usr/lib64/${PN}/spawn /usr/bin/${PN} || die "doins bin failed"
 
     fperms a+rw "usr/share/lightworks/Preferences"
     fperms a+rw "usr/share/lightworks/Audio Mixes"
