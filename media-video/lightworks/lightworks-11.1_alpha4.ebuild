@@ -14,6 +14,7 @@ SRC_URI="http://www.lwks.com/dmpub/lwks-11.1.D-amd64.deb"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
+RESTRICT="fetch"
 IUSE=""
 
 RDEPEND="
@@ -63,6 +64,12 @@ DEPEND="${RDEPEND}
     x11-apps/mkfontdir"
 
 S="${WORKDIR}"
+
+pkg_nofetch() {
+    einfo "Please download"
+    einfo "  - lwks-11.1.D-amd64.deb"
+    einfo "from ${HOMEPAGE} and place it in ${DISTDIR}"
+}
 
 pkg_setup() {
     :;
