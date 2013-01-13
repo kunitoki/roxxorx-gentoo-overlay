@@ -3,25 +3,52 @@ Roxxorx is an online repository of gentoo portage ebuilds. It contains new ebuil
 
 Features:
 
+  Desktop tools
+    - google-desktop
+    - shellinabox for shell support thru http connections
+    - bmpanel2
+    - cairo-dock
+    - gsimplecal
+    - thunar-dropbox
+    - disper
+    - harvestman (webcrawler)
+
+  Multimedia
+    - lightworks (alpha)
+    - sopcast suite
+    - zattoo
+    - openshot
+    - pytube
+    - florence on screen keyboard
+
   Mapping
     - spatialite/rasterlite for spatial database support
     - better gdal/ogr for building plugins with mapnik
     - gdal support for libecwj2 and oracle spatial
-    - tilecache for python image rtree caching
+    - python spatial index rtree
 
-  Terminals
-    - shellinabox for shell support thru http connections
+  Scripting
+    - jsdb fast javascript interpreter and framework
+    - v8cgi for fast web development
+    - helma www server
+
+  Hardware support
+    - nvidia-bl for backlight support on newer GeForce cards
+    - lexmark-z600 driver
+    - vodafone-mobile driver
 
   Enterprise
-    - backupexec-ralus ebuild
-    - python SAP connectors
-    - better oracle instantclient autoconfiguration
+    - Python SAP connectors (pysaprfc)
+    - Oracle express
+    - better Oacle instantclient autoconfiguration
+    - python cx_oracle connector
+    - backupexec-ralus ebuild (old Symantec BackupExec)
+    - oprofile GUI
+    - phasis small python ERP
+    - zarafa
+    - natmonitor
 
-  Drivers
-    - nvidia-drivers for RT patched kernels
-
-  Binary applications
-    - lightworks (alpha)
-
+  Antivirus
+    - avast4 workstation edition
 
 And much, much more....
