@@ -7,7 +7,6 @@ Features:
     - spatialite/rasterlite for spatial database support
     - better gdal/ogr for building plugins with mapnik
     - gdal support for libecwj2 and oracle spatial
-    - tilecache for python image rtree caching
 
   Terminals
     - shellinabox for shell support thru http connections
@@ -16,9 +15,6 @@ Features:
     - backupexec-ralus ebuild
     - python SAP connectors
     - better oracle instantclient autoconfiguration
-
-  Drivers
-    - nvidia-drivers for RT patched kernels
 
   Binary applications
     - lightworks (alpha)
