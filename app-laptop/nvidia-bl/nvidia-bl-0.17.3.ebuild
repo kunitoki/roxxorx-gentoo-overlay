@@ -6,7 +6,7 @@ EAPI=2
 
 inherit eutils linux-info linux-mod
 
-MY_P=nvidia-bl-dkms_${PV}~maverick
+MY_P=nvidia-bl-dkms_${PV}~natty
 MY_PD=nvidia-bl-dkms-${PV}
 MY_MODULENAME=nvidia_bl
 
