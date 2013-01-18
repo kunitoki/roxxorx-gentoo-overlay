@@ -22,10 +22,16 @@ S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
+
 }
 
 src_install() {
 	cp -r "${S}"/etc "${D}"/
 	use grub && cp -r "${S}"/boot "${D}"/
-}
 
+	insinto /etc/splash/${PN}
+	doins "${FILESDIR}/1920x1080.cfg" || die "install file failed."
+	insinto /etc/splash/${PN}/images
+	doins "${FILESDIR}/silent-1920x1080.jpg" || die "install file failed."
+	doins "${FILESDIR}/verbose-1920x1080.jpg" || die "install file failed."
+}
