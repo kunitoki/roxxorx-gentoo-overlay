@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=1
+EAPI=4
 
-inherit eutils qt4 toolchain-funcs
+inherit eutils qt4-r2 toolchain-funcs
 
 MY_PD="${P/_/-}"
 MY_PF="${P/_/-}"

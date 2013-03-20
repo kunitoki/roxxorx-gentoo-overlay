@@ -1,6 +1,8 @@
 # Copyright 2006-2008 Marco Wegner <devel@marcowegner.de>
 
-inherit eutils qt4
+EAPI=4
+
+inherit eutils qt4-r2
 
 DESCRIPTION="A fast and usable calculator for power users."
 HOMEPAGE="http://speedcrunch.org/"
