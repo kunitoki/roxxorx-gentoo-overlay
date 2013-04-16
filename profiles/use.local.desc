@@ -7,7 +7,7 @@
 
 # Keep it sorted.
 
-app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
-app-emulation/virtualbox-bin:headless - Install without any graphic frontend
-app-emulation/virtualbox-bin:sdk - Install the SDK
-app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
+#app-emulation/virtualbox-bin:additions - Install Guest System Tools ISO
+#app-emulation/virtualbox-bin:headless - Install without any graphic frontend
+#app-emulation/virtualbox-bin:sdk - Install the SDK
+#app-emulation/virtualbox-bin:vboxwebsrv - Install the VirtualBox webservice
