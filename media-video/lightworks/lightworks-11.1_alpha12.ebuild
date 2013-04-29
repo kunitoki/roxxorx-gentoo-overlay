@@ -38,7 +38,7 @@ RDEPEND="
     media-libs/fontconfig
     media-libs/glu
     media-libs/mesa
-	media-libs/portaudio
+    media-libs/portaudio
     >=media-gfx/nvidia-cg-toolkit-3.1.0013-r2
     x11-libs/libxcb
     x11-libs/libXinerama
