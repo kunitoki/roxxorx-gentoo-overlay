@@ -5,7 +5,7 @@ EAPI="4"
 
 inherit eutils
 
-MY_PV="11.1.H.D"
+MY_PV="11.1.H"
 
 DESCRIPTION="Lightworks is the fastest, most accessible and focused NLE in the industry"
 HOMEPAGE="http://www.lwks.com/"
@@ -36,8 +36,9 @@ RDEPEND="
     media-libs/tiff:3
     >=media-libs/freetype-2
     media-libs/fontconfig
-    media-libs/mesa
     media-libs/glu
+    media-libs/mesa
+    media-libs/portaudio
     >=media-gfx/nvidia-cg-toolkit-3.1.0013-r2
     x11-libs/libxcb
     x11-libs/libXinerama
