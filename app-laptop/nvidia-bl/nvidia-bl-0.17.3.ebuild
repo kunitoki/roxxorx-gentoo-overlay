@@ -37,6 +37,8 @@ src_prepare() {
 
     cp "${FILESDIR}/${PV}-Makefile" "${S}/Makefile"
 
+    sed -ie "s/__devinitconst//g" "${S}/nvidia_bl.c"
+
     if use debug; then
         true
     else
@@ -45,44 +47,44 @@ src_prepare() {
 }
 
 src_compile() {
-	set_arch_to_kernel
-	emake \
-		LINUXDIR="${KERNEL_DIR}" \
-		|| die "Compiling kernel modules failed"
+    set_arch_to_kernel
+    emake \
+        LINUXDIR="${KERNEL_DIR}" \
+        || die "Compiling kernel modules failed"
 }
 
 src_install() {
-	linux-mod_src_install
+    linux-mod_src_install
 
     insinto /etc/modprobe.d
     doins ${FILESDIR}/${MY_MODULENAME}.conf || die "doins failed"
 }
 
 pkg_postinst() {
-	linux-mod_pkg_postinst
+    linux-mod_pkg_postinst
 
-	elog "WARNING: Do not forget to set the default max brigthness"
+    elog "WARNING: Do not forget to set the default max brigthness"
     elog "option when loading the kernel module, or you will be"
     elog "experiencing your backlight to reset to a very dark default"
     elog "making you unable to see anything !"
     elog ""
     elog "Look into /etc/modprobe.d/${MY_MODULENAME}.conf to change"
     elog "your preferred max level for your card"
-	elog ""
-	if has_version sys-apps/openrc; then
+    elog ""
+    if has_version sys-apps/openrc; then
         elog "Please add \"nvidia_bl\" to:"
         elog ""
-    	elog "/etc/conf.d/modules"
+        elog "/etc/conf.d/modules"
         elog ""
         elog "And set the default option:"
         elog ""
         elog "echo \"module_nvidia_bl_args=\\\"max_level=131072\\\"\" \\"
         elog "  >> \"/etc/conf.d/modules\""
-	else
+    else
         elog "Add the module and set the default option:"
         elog ""
         elog "echo \"nvidia_bl max_level=131072\" \\"
         elog "  >> /etc/modules.autoload.d/kernel-${KV_MAJOR}.${KV_MINOR}"
-	fi
-	elog ""
+    fi
+    elog ""
 }

@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.9.2.ebuild,v 1.1 2012/12/26 13:36:43 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.10.0-r1.ebuild,v 1.1 2013/06/24 23:48:21 titanofold Exp $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ inherit autotools eutils libtool perl-module python toolchain-funcs java-pkg-opt
 
 DESCRIPTION="Translator library for raster geospatial data formats (includes OGR support)"
 HOMEPAGE="http://www.gdal.org/"
-SRC_URI="http://download.osgeo.org/gdal/${P}.tar.gz"
+SRC_URI="http://download.osgeo.org/${PN}/${PV}/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="MIT"
@@ -83,6 +83,7 @@ pkg_setup() {
 	fi
 
 	use python && python_pkg_setup
+	java-pkg-opt-2_pkg_setup
 }
 
 src_unpack() {
@@ -91,6 +92,8 @@ src_unpack() {
 }
 
 src_prepare() {
+	java-pkg-opt-2_src_prepare
+
 	# fix datadir and docdir placement
 	sed -i \
 		-e "s:@datadir@:@datadir@/gdal:" \
@@ -109,9 +112,6 @@ src_prepare() {
 	[[ ${CHOST} == *-darwin* ]] \
 		&& epatch "${FILESDIR}"/${PN}-1.5.0-install_name.patch \
 		|| epatch "${FILESDIR}"/${PN}-1.5.0-soname.patch
-
-	# Update for zlib header changes (see bug #383569)
-	epatch "${FILESDIR}"/${PN}-1.8.1-zlib_header_fix.patch
 
 	# Fix spatialite/sqlite include issue
 	sed -i \
@@ -191,9 +191,8 @@ src_configure() {
 		--with-libz="${EPREFIX}/usr/" \
 		--with-ogr \
 		--with-grib \
-		--with-vfk \
-		--with-libtiff=external \
-		--with-geotiff=external \
+		--with-libtiff \
+		--with-geotiff \
 		$(use_enable debug) \
 		$(use_with armadillo) \
 		$(use_with postgres pg) \
@@ -301,6 +300,12 @@ src_install() {
 		insinto /usr/share/${PN}/samples
 		doins swig/python/samples/*
 	fi
+
+	pushd man/man1 > /dev/null
+	for i in * ; do
+		newman ${i} ${i}
+	done
+	popd > /dev/null
 }
 
 pkg_postinst() {

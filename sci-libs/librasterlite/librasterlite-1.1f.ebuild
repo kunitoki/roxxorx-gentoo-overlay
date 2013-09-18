@@ -15,12 +15,12 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-RDEPEND=">=sci-libs/libspatialite-3.0.1
+RDEPEND=">=dev-db/spatialite-3.0.1
         sys-libs/zlib
         media-libs/libpng
         media-libs/tiff
         sci-libs/libgeotiff
-        media-libs/jpeg
+        virtual/jpeg
         sci-libs/proj"
 DEPEND="${RDEPEND}"
 
@@ -29,7 +29,7 @@ S=${WORKDIR}/${P}
 src_configure()
 {
 	cd "${S}"
-	
+
 	econf --enable-autoconf \
 		|| die "Error: econf failed"
 }
