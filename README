@@ -17,9 +17,8 @@ Features:
     - lightworks (alpha)
     - sopcast suite
     - zattoo
-    - openshot
     - pytube
-    - florence on screen keyboard
+    - florence (on screen keyboard)
 
   Mapping
     - spatialite/rasterlite for spatial database support
@@ -30,7 +29,6 @@ Features:
   Scripting
     - jsdb fast javascript interpreter and framework
     - v8cgi for fast web development
-    - helma www server
 
   Hardware support
     - nvidia-bl for backlight support on newer GeForce cards
@@ -40,7 +38,7 @@ Features:
   Enterprise
     - Python SAP connectors (pysaprfc)
     - Oracle express
-    - better Oacle instantclient autoconfiguration
+    - better Oracle instantclient autoconfiguration
     - python cx_oracle connector
     - backupexec-ralus ebuild (old Symantec BackupExec)
     - oprofile GUI
