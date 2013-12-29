@@ -32,6 +32,7 @@ RDEPEND="
     dev-qt/qtgui
     dev-qt/qtcore
     virtual/jpeg
+    gnome-extra/libgsf
     media-libs/libpng
     media-libs/tiff:3
     >=media-libs/freetype-2
