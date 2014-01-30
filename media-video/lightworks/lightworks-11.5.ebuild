@@ -5,7 +5,7 @@ EAPI="4"
 
 inherit eutils
 
-MY_PV="11.5.H"
+MY_PV="11.5"
 
 DESCRIPTION="Lightworks is the fastest, most accessible and focused NLE in the industry"
 HOMEPAGE="http://www.lwks.com/"
@@ -14,7 +14,7 @@ SRC_URI="http://www.lwks.com/dmpub/lwks-${MY_PV}-amd64.deb"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-RESTRICT="fetch"
+RESTRICT=""
 IUSE=""
 
 RDEPEND="
