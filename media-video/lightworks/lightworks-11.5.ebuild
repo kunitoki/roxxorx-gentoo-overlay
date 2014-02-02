@@ -23,7 +23,7 @@ RDEPEND="
     dev-libs/expat
     dev-libs/libffi
     sys-apps/dbus
-    sys-fs/udev
+    virtual/udev
     x11-libs/pango
     x11-libs/gdk-pixbuf
     x11-libs/cairo
