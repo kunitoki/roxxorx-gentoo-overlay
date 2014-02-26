@@ -7,7 +7,7 @@ EAPI="4"
 inherit eutils
 
 MY_PN="spatialite_gui"
-MY_P="${MY_PN}-${PV}-stable"
+MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="SpatiaLite Graphical User Interface"
 HOMEPAGE="https://www.gaia-gis.it/fossil/spatialite_gui/index"
@@ -18,8 +18,8 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-RDEPEND=">=dev-db/spatialite-4.1.1[geos,libxml2,proj,xls]
-        >=sci-libs/libgaiagraphics-0.4b
+RDEPEND=">=dev-db/spatialite-4.1.1
+        >=sci-libs/libgaiagraphics-0.5
         >=dev-libs/freexl-1.0.0b
         >=x11-libs/wxGTK-2.8.10"
 DEPEND="${RDEPEND}"
