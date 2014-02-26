@@ -18,7 +18,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="+geos iconv +proj +xls"
 
-RDEPEND=">=dev-db/sqlite-3.7.5:3[extensions]
+RDEPEND="
+    || ( >=dev-db/sqlite-3.7.5:3[extensions] >=dev-db/sqlite-3.8.0:3 )
 	geos? ( >=sci-libs/geos-3.3 )
 	proj? ( sci-libs/proj )
 	xls? ( dev-libs/freexl )
