@@ -64,8 +64,10 @@ DEPEND="${RDEPEND}
     app-arch/unzip
     x11-apps/mkfontdir"
 
+S="${WORKDIR}"
+
 src_unpack() {
-    cd "${WORKDIR}"
+    cd "${S}"
     ln -s ${DISTDIR}/${A} .
     unpack ${A} ./data.tar.gz
 }
