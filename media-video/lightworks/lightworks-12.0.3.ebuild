@@ -5,11 +5,11 @@ EAPI="4"
 
 inherit eutils
 
-MY_PV="11.5.1"
+MY_PV="12.0.3"
 
 DESCRIPTION="Lightworks is the fastest, most accessible and focused NLE in the industry"
 HOMEPAGE="http://www.lwks.com/"
-SRC_URI="http://www.lwks.com/dmpub/lwks-${MY_PV}-amd64.deb"
+SRC_URI="http://www.lwks.com/dmpub/lwks-${MY_PV}.C-amd64.deb"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -61,26 +61,15 @@ RDEPEND="
 "
 
 DEPEND="${RDEPEND}
-    !app-arch/deb2targz
     app-arch/unzip
     x11-apps/mkfontdir"
 
 S="${WORKDIR}"
 
-pkg_nofetch() {
-    einfo "Please download"
-    einfo "  - lwks-${MY_PV}-amd64.deb"
-    einfo "from ${HOMEPAGE} and place it in ${DISTDIR}"
-}
-
-pkg_setup() {
-    :;
-}
-
 src_unpack() {
-    unpack ${A}
-    unpack ./data.tar.gz
-    #unpack ./control.tar.gz
+    cd "${S}"
+    ln -s ${DISTDIR}/${A} .
+    unpack ${A} ./data.tar.gz
 }
 
 src_prepare() {
