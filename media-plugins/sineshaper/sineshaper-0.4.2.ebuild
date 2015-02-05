@@ -4,8 +4,6 @@
 
 inherit eutils
 
-#MY_P="ll-scope-${PV}"
-
 DESCRIPTION="A monophonic synth plugin that sends the sound from two sine
 oscillators through two sine waveshapers in series (DSSI-Plugin)"
 HOMEPAGE="http://www.student.nada.kth.se/~d00-llu/music_dssi.php?lang=en"
@@ -21,15 +19,13 @@ RDEPEND=">=media-libs/dssi-0.9
 	>=dev-cpp/libglademm-2.6.0
 	>=media-libs/liblo-0.18
 	dev-util/pkgconfig"
-
-#S="${WORKDIR}/${MY_P}"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/gcc-4.x.patch"
-	epatch "${FILESDIR}/signal.patch"
+	epatch "${FILESDIR}/sineshaper.patch"
 }
 
 src_compile() {

@@ -1,6 +1,25 @@
---- src/common/dssiuiclient.hpp   2009-08-08 12:37:29.000000000 +0100
-+++ src/common/dssiuiclient.hpp   2009-08-08 12:38:49.000000000 +0100
-@@ -99,13 +99,13 @@
+--- sineshaper-old/src/common/dssiplugin.hpp	2005-10-29 01:14:08.000000000 +0200
++++ sineshaper-new/src/common/dssiplugin.hpp	2014-01-01 21:21:09.034368498 +0100
+@@ -26,6 +26,7 @@
+ 
+ #include <unistd.h>
+ 
++#include <cstdlib>
+ #include <cstring>
+ #include <string>
+ #include <vector>
+
+--- sineshaper-old/src/common/dssiuiclient.hpp	2005-10-29 01:14:08.000000000 +0200
++++ sineshaper-new/src/common/dssiuiclient.hpp	2014-01-01 21:23:18.120256016 +0100
+@@ -38,7 +38,6 @@
+ using namespace Glib;
+ using namespace Gnome::Glade;
+ using namespace Gtk;
+-using namespace sigc;
+ using namespace std;
+ 
+ 
+@@ -99,13 +98,13 @@
    // Host to UI
    /** This signal is emitted when the host sends a new control value.
        The parameters are the control port number and the new control value. */
@@ -17,7 +36,7 @@
    /** Emitted when the host wants the UI to be visible. A DSSI GUI should not
        show any windows until this signal is emitted. */
    Dispatcher show_received;
-@@ -134,7 +134,7 @@
+@@ -134,7 +133,7 @@
    void* allocate_shared_memory(int bytes);
    
    /** Emitted when the plugin has attached to the shared memory segment. */
@@ -27,9 +46,8 @@
    /** Returns true if the plugin has attached to the shared memory segment. */
    bool plugin_has_attached();
 
-
---- src/sineshaper/sineshapergui.hpp      2009-08-08 12:37:29.000000000 +0100
-+++ src/sineshaper/sineshapergui.hpp      2009-08-08 12:38:03.000000000 +0100
+--- sineshaper-old/src/sineshaper/sineshapergui.hpp	2005-10-29 01:14:08.000000000 +0200
++++ sineshaper-new/src/sineshaper/sineshapergui.hpp	2014-01-01 21:24:01.682233438 +0100
 @@ -31,11 +31,11 @@
    void program_selected(int bank, int program);
    
