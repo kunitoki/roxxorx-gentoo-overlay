@@ -35,6 +35,7 @@ RDEPEND="
     gnome-extra/libgsf
     media-libs/libpng
     media-libs/tiff:3
+    media-libs/jpeg:8
     >=media-libs/freetype-2
     media-libs/fontconfig
     media-libs/glu
