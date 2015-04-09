@@ -9,7 +9,7 @@ MY_PV="12.0.3"
 
 DESCRIPTION="Lightworks is the fastest, most accessible and focused NLE in the industry"
 HOMEPAGE="http://www.lwks.com/"
-SRC_URI="http://www.lwks.com/dmpub/lwks-${MY_PV}.J-amd64.deb"
+SRC_URI="http://www.lwks.com/dmpub/lwks-${MY_PV}.M-amd64.deb"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
